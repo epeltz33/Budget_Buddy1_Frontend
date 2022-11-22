@@ -1,9 +1,25 @@
-import {createSelector} from 'reselect'; //  create a selector function to get the account state
+const update_accounts = 'accounts/update_accounts';
+const add_accounts = 'accounts/add_accounts';
+const delete_accounts = 'accounts/delete_accounts';
+const load_accounts = 'accounts/load_accounts';
 
 
-const getAccount = state => state.account.byId; //  get the account state from the store state
+const update = ( accounts ) => ( { // update accounts in the store
+	return { type: update_accounts, accounts };
 
-export const getAccountById = createSelector(
-    [getAccount, (state, accountId) => accountId], //  get the account state and the account id from the store state
-    (getAccount, accountId) => getAccount[accountId].account_name //  return the account name
-);
+};
+
+const add = ( accounts ) => ( { // add accounts to the store
+	return { type: add_accounts, accounts };
+
+};
+
+const delete = ( accounts ) => ( { // delete accounts from the store
+	return { type: delete_accounts, accounts };
+
+};
+
+const load = ( accounts ) => ( { // load accounts from the store
+	return { type: load_accounts, accounts };
+
+};
