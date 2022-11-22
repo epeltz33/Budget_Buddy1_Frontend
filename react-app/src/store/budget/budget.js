@@ -1,4 +1,4 @@
-const update_budgets = 'budgets/update_budget';
+const update_budget = 'budgets/update_budget';
 const load_budgets = 'budgets/load_budgets';
 
 const update = (budget) => {
@@ -34,4 +34,18 @@ export const getBudgets = () => async (dispatch) => {
 }
 
 const initialState = { byId: {}, allIds: [] }; // this is the default state of the reducer when the app first loads
- 
+
+const budgetReducer = (state = initialState, action) => {
+    switch (action.type) { // this is where the action is handled
+        case update_budget: {
+            const newState = {
+                byId: { }, allIds: [] };
+                for (let i = 0; i < action.budgets.length; i++) {
+                    let budget = action.budgets[i];
+                    newState.byId[budget.id] = budget; // update the budget in the byId object
+                    newState.allIds.push(budget.id); // update the budget in the allIds array
+                }
+                return newState;
+            } 
+            
+            }
