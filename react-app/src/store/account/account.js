@@ -74,7 +74,7 @@ export const deleteAccount = (accountId) => async (dispatch) => {
 	};
 }
 
-
+//testing
 const initialState = {byId: {}, all: []};
 
 const accountReducer = (state = initialState, action) => {
