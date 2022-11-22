@@ -20,7 +20,7 @@ const load = (transactions) => {
     return { type: load_transactions, transactions };
 };
 
-export cont getTransactions = () => async ( dispatch ) => {
+export const getTransactions = () => async ( dispatch ) => {
 	const response = await fetch( '/api/transactions' );
 
 	if ( response.ok ) {
@@ -29,5 +29,23 @@ export cont getTransactions = () => async ( dispatch ) => {
 		return transactions;
 	}
 }
+export const createTransactions = ( newTransaction ) => async ( dispatch ) => {
+	const response = await fetch( '/api/transactions', {
+		method: 'POST',
+		body: JSON.stringify( newTransaction ),
+		headers: {
+			'Content-Type': 'application/json'
+		});
+	if ( response.ok ) {
+		const transactions = await response.json();
+        dispatch( load( transactions.all_transactions ) );
+		return transactions;
+	};
+	else {
+        console.log( response );
+};
+	return null; // if the response was not ok
+};
 
- 
+
+
