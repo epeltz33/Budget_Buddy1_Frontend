@@ -71,3 +71,41 @@ export const updateTransaction = ( transaction ) => async ( dispatch ) => {
 		return transaction; // this is the transaction object that was updated
 	}
 }
+
+const initialState = {}; // this is an object with transaction ids as keys and transaction objects as values
+
+const transactionReducer = ( state = initialState, action ) => {
+	let newState;
+	switch (action.type) {
+		case add_transaction:
+			newState = { ...state };
+			newState[action.newTransaction.id] = action.newTransaction;
+			return newState;
+		case delete_transaction:
+			newState = { ...state };
+			delete newState[action.transactionId];
+			return newState;
+		case update_transaction:
+			newState = { ...state };
+			newState[action.transaction.id] = action.transaction;
+			return newState;
+		case load_transactions:
+			newState = { ...state };
+			action.transactions.forEach(transaction => {
+				newState[transaction.id] = transaction;
+			});
+			return newState;
+		case delete_account:
+			newState = { ...state };
+			for (let transactionId in newState) {
+				if (newState[transactionId].accountId === action.accountId) {
+					delete newState[transactionId];
+				}
+			}
+			return newState;
+		default:
+			return state;
+	};
+};
+
+export default transactionReducer;
