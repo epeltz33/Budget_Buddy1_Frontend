@@ -23,3 +23,12 @@ const load = ( accounts ) => ( { // load accounts from the store
 	return { type: load_accounts, accounts };
 
 };
+
+export const getAccounts = () => async ( dispatch ) => { // get accounts from the server
+	const response = await fetch( '/api/accounts/' );
+
+	if ( response.ok ) {
+		const accounts = await response.json();
+		dispatch( load( accounts.all_accounts ) );
+		return accounts;
+	}
