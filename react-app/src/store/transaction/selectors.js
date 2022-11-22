@@ -38,3 +38,13 @@ export const getTransactionsByDate = ( [transactions, ( state, dateQuery ) => da
 		return transactions_data;
 	}
 );
+
+export const getTransactionByAmount = createSelector(
+	[transactions, ( state, amountQuery ) => amountQuery],
+	( transactions, amountQuery ) => {
+		return transactions.find( transaction => transaction.trans_amount === +amountQuery );
+	} );
+
+
+
+
