@@ -74,36 +74,36 @@ export const deleteAccount = (accountId) => async (dispatch) => {
 	};
 }
 
-//testing
+
 const initialState = {byId: {}, all: []};
 
 const accountReducer = (state = initialState, action) => {
 	let newState;
-	switch (action.type) {
+	switch (action.type) { //action.type is the action that is being dispatched from the action creator
 		case add_accounts:
-			newState = Object.assign({}, state);
-			newState.byId[action.newAccount.id] = action.newAccount;
-			newState.all.push(action.newAccount.id);
-			return newState;
-		case update_accounts:
-			newState = Object.assign({}, state);
-			newState.byId[action.account.id] = action.account;
-			return newState;
+			newState = Object.assign({}, state); // create a copy of the state   
+			newState.byId[action.newAccount.id] = action.newAccount; // add the new account to the byId object 
+			newState.all.push(action.newAccount.id); // add the new account id to the all array
+			return newState; // return the new state 
+		case update_accounts:  
+			newState = Object.assign({}, state); // create a copy of the state object and update the account with the new account
+			newState.byId[action.account.id] = action.account; // 
+			return newState; // 
 		case delete_accounts:
-			newState = Object.assign({}, state);
-			delete newState.byId[action.accountId];
-			newState.all = newState.all.filter(id => id !== action.accountId);
+			newState = Object.assign({}, state); // create a copy of the state 
+			delete newState.byId[action.accountId]; // delete the account from the byId object
+			newState.all = newState.all.filter(id => id !== action.accountId); // remove the account id from the all array
 			return newState;
 		case load_accounts:
-			newState = Object.assign({}, state);
-			action.accounts.forEach(account => {
-				newState.byId[account.id] = account;
-				newState.all.push(account.id);
+			newState = Object.assign({}, state); 
+			action.accounts.forEach(account => { // loop through the accounts array
+				newState.byId[account.id] = account; // add each account to the byId object
+				newState.all.push(account.id); // add each account id to the all array
 			});
 			return newState;
 		default:
-			return state;
+			return state; // return the state if no action is dispatched
 	};
 }
 
-export default accountReducer;
+export default accountReducer; // export the reducer so it can be used in the store

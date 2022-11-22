@@ -33,7 +33,7 @@ export const getBudgets = () => async (dispatch) => {
     }
 }
 
-const initialState = { byId: {}, allIds: [] }; // this is the default state of the reducer when the app first loads
+const initialState = { byId: {}, all: [] };
 
 const budgetReducer = (state = initialState, action) => {
     switch (action.type) { // this is where the action is handled
@@ -57,12 +57,13 @@ const budgetReducer = (state = initialState, action) => {
             action.budgets.forEach((budget) => {
                 newState.byId[budget.id] = budget;
                 newState.allIds.push(budget.id);
-            });
+            }
+            );
             return newState;
         };
         default:
             return state;
-    };
+    }
 };
 
 export default budgetReducer;
