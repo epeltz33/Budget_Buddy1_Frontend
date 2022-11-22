@@ -32,3 +32,18 @@ export const getAccounts = () => async ( dispatch ) => { // get accounts from th
 		dispatch( load( accounts.all_accounts ) );
 		return accounts;
 	}
+
+	export const createAccount = ( account ) => async ( dispatch ) => { // create account on the server and add to the store if successful
+		const response = await fetch( '/api/accounts/', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify( newAccount ),
+		} );
+		const data = await response.json();
+		if ( response.ok ) {
+			dispatch( add( data.account ) ); //  add account to the store
+			return data;
+		}
+	};
