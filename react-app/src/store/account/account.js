@@ -41,9 +41,25 @@ export const getAccounts = () => async ( dispatch ) => { // get accounts from th
 			},
 			body: JSON.stringify( newAccount ),
 		} );
-		const data = await response.json();
+		const account= await response.json();
 		if ( response.ok ) {
 			dispatch( add( data.account ) ); //  add account to the store
-			return data;
+			return account;
 		}
 	};
+
+	export const updateAccount = ( data ) => async ( dispatch ) => { // update account on the server and update the store
+		const response = await fetch( `/api/accounts/${ data.id }/`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify( account ),
+		} );
+		const account = await response.json();
+		if ( response.ok ) {
+			dispatch( update( data.account ) ); // update account in the store
+			return account;
+		}
+	};
+
