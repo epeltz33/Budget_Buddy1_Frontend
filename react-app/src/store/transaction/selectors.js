@@ -45,6 +45,12 @@ export const getTransactionByAmount = createSelector(
 		return transactions.find( transaction => transaction.trans_amount === +amountQuery );
 	} );
 
+/* TODO:
+1. make function for transaction by payee\
+export const getTransactionByPayee = createSelector(
+
+*/
+
 
 
 
