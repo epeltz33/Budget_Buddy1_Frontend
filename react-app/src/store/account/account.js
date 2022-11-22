@@ -10,7 +10,7 @@ const update = ( account ) => ( { // update accounts in the store
 };
 
 const add = ( newAccounts ) => ( { // add accounts to the store
-	return { type: add_accounts, accounts };
+	return { type: add_accounts, accounts }; // type is a required property for actions
 
 };
 
