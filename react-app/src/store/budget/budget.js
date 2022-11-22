@@ -39,13 +39,31 @@ const budgetReducer = (state = initialState, action) => {
     switch (action.type) { // this is where the action is handled
         case update_budget: {
             const newState = {
-                byId: { }, allIds: [] };
-                for (let i = 0; i < action.budgets.length; i++) {
-                    let budget = action.budgets[i];
-                    newState.byId[budget.id] = budget; // update the budget in the byId object
-                    newState.allIds.push(budget.id); // update the budget in the allIds array
-                }
-                return newState;
-            } 
-            
-            }
+                ...state,
+                byId: {
+                    ...state.byId,
+                
+                },
+                allIds: [...state.allIds],
+            };
+            const updateBudget = action.budget; // this is the budget that was updated
+            newState.byId[updateBudget.id] = updateBudget; // this is where the budget is updated in the state
+            const updateIndex = newState.allIds.findIndex((budget) => budget.id === updateBudget.id);
+            newState.allIds[updateIndex] = updateBudget.id;// the budget is updated in the allIds array 
+            return newState;
+        };
+        case load_budgets: { 
+            const newState = { byId: {}, allIds: [] };
+            action.budgets.forEach((budget) => {
+                newState.byId[budget.id] = budget;
+                newState.allIds.push(budget.id);
+            });
+            return newState;
+        };
+        default:
+            return state;
+    };
+};
+
+export default budgetReducer;
+
