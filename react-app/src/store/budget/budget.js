@@ -23,3 +23,15 @@ export const updateBudget = (data) => async (dispatch) => {
         return budget;
     }
 };
+
+export const getBudgets = () => async (dispatch) => {
+    const response = await fetch('/api/budgets');
+    if (response.ok) {
+        const budgets = await response.json();
+        dispatch(load(budgets));
+        return budgets;
+    }
+}
+
+const initialState = { byId: {}, allIds: [] }; // this is the default state of the reducer when the app first loads
+ 
