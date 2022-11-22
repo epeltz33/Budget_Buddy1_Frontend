@@ -4,17 +4,17 @@ const delete_accounts = 'accounts/delete_accounts';
 const load_accounts = 'accounts/load_accounts';
 
 
-const update = ( accounts ) => ( { // update accounts in the store
+const update = ( account ) => ( { // update accounts in the store
 	return { type: update_accounts, accounts };
 
 };
 
-const add = ( accounts ) => ( { // add accounts to the store
+const add = ( newAccounts ) => ( { // add accounts to the store
 	return { type: add_accounts, accounts };
 
 };
 
-const delete = ( accounts ) => ( { // delete accounts from the store
+const delete = ( prevAccounts ) => ( { // delete accounts from the store
 	return { type: delete_accounts, accounts };
 
 };
@@ -75,3 +75,79 @@ export const getAccounts = () => async ( dispatch ) => { // get accounts from th
 
 		}
 	};
+
+
+	const initialState = { byId: {}, allIds: [] };
+
+	const accountReducer = ( state = initialState, action ) => {
+
+		switch ( action.type ) {
+			case update_accounts: {
+				const { accounts } = action;
+				const newById = { ...state.byId };
+				const newAllIds = [ ...state.allIds ];
+				accounts.forEach( ( account ) => {
+					newById[account.id] = account;
+
+					if ( !newAllIds.includes( account.id ) ) {
+						newAllIds.push( account.id );
+					}
+
+				} );
+
+				return { byId: newById, allIds: newAllIds };
+
+			}
+
+			case add_accounts: {
+				const { accounts } = action;
+				const newById = { ...state.byId };
+				const newAllIds = [ ...state.allIds ];
+				accounts.forEach( ( account ) => {
+					newById[account.id] = account;
+
+					if ( !newAllIds.includes( account.id ) ) {
+						newAllIds.push( account.id );
+					}
+
+				} );
+
+				return { byId: newById, allIds: newAllIds };
+
+			}
+
+			case delete_accounts: {
+				const { accounts } = action;
+				const newById = { ...state.byId };
+				const newAllIds = [ ...state.allIds ];
+				accounts.forEach( ( account ) => {
+					delete newById[account.id];
+					newAllIds = newAllIds.filter( ( id ) => id !== account.id );
+
+				} );
+
+				return { byId: newById, allIds: newAllIds };
+
+			}
+
+			case load_accounts: {
+				const { accounts } = action;
+				const newById = {};
+				const newAllIds = [];
+				accounts.forEach( ( account ) => {
+					newById[account.id]
+					newAllIds.push( account.id );
+
+				} );
+
+				return { byId: newById, allIds: newAllIds };
+
+			}
+
+			default:
+				return state;
+		};
+
+	};
+
+	export default accountReducer; // export the reducer to the store index.js
