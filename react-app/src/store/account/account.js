@@ -63,3 +63,15 @@ export const getAccounts = () => async ( dispatch ) => { // get accounts from th
 		}
 	};
 
+	export const deleteAccount = ( data ) => async ( dispatch ) => { // delete account on the server and delete from the store
+		const response = await fetch( `/api/accounts/${ prevAccount.id }`, {
+			method: 'DELETE',
+		} );
+
+		if ( response.ok ) {
+			const account = await response.json(); // delete account from the store
+			dispatch( delete ( data.account ) );
+			return account;
+
+		}
+	};
