@@ -20,3 +20,14 @@ const load = (transactions) => {
     return { type: load_transactions, transactions };
 };
 
+export cont getTransactions = () => async ( dispatch ) => {
+	const response = await fetch( '/api/transactions' );
+
+	if ( response.ok ) {
+		const transactions = await response.json();
+		dispatch( load( transactions.all_transactions ) );
+		return transactions;
+	}
+}
+
+ 
