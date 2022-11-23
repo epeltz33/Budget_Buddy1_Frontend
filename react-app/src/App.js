@@ -1,26 +1,36 @@
 import React, { useState, useEffect} from 'react';
 import { BrowserRouter, Router,  Switch } from 'react-router-dom';
 import {useDispatch } from 'react-redux';
-import { authenticate } from './store/session';
-
+import { authenticate, login } from './store/session';
+import LoginForm from './components/auth/LoginForm';
 
 
 
 function App() {
   const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
+    (async () => {
+      dispatch(login()); 
+      setLoaded(true);
+    })();
   }, [dispatch]);
+
+   if (!loaded) {
+    return null;
+  }
 
   return (
     <BrowserRouter>
-      <Switch>
-        <Route path='/'>
-          <h1>Home</h1>
-        </Route>
-      </Switch>
+    <NavBar />
+    <Switch>
+      <Route path='/login'>
+        <LoginForm />
+      </Route>
+    </Switch>
     </BrowserRouter>
   );
 }
+
+export default App;

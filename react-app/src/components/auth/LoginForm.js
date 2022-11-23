@@ -5,8 +5,8 @@ import {login} from '../../store/session';
 import './auth.css';
 
 const LoginForm = () => { // LoginForm is now a functional component instead of a class component  
-    const dispatch = useDispatch(); // this is the hook that allows us to use the dispatch function
-    const user = useSelector(state => state.session.user); // this is the hook that allows us to access the user slice of state
+    const dispatch = useDispatch(); // this is the hook that allows the dispatch function
+    const user = useSelector(state => state.session.user); // this is the hook that allows access the user slice of state
     const [email, setEmail] = React.useState(''); 
     const [password, setPassword] = React.useState('');
     const [errors, setErrors] = React.useState([]);
