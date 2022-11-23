@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { BrowserRouter, Router,  Switch } from 'react-router-dom';
 import {useDispatch } from 'react-redux';
-import { authenticate, login } from './store/session';
+import {  login } from './store/session';
 import LoginForm from './components/auth/LoginForm';
 
 
@@ -25,9 +25,9 @@ function App() {
     <BrowserRouter>
     <NavBar />
     <Switch>
-      <Route path='/login'>
+      <Router path='/login'>
         <LoginForm />
-      </Route>
+      </Router>
     </Switch>
     </BrowserRouter>
   );

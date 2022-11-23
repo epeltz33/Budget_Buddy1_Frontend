@@ -6,15 +6,15 @@ import './auth.css';
 
 const LoginForm = () => { // LoginForm is now a functional component instead of a class component  
     const dispatch = useDispatch(); // this is the hook that allows the dispatch function
-    const user = useSelector(state => state.session.user); // this is the hook that allows access the user slice of state
-    const [email, setEmail] = React.useState(''); 
-    const [password, setPassword] = React.useState('');
-    const [errors, setErrors] = React.useState([]);
+    const user = useSelector(state => state.session.user); 
+    const [email, setEmail] = useState(''); 
+    const [password, setPassword] = useState('');
+    const [errors, setErrors] = useState([]);
 
     const onLogin = async (e) => { //  this function is called when the user clicks the login button
         e.preventDefault(); // prevent the default behavior of the form
         const data = dispatch(login(email, password)); // call the login thunk and pass in the email and password
-        if (data) { // if there are errors, set the errors in state
+        if (data) { 
             setErrors(data);
         }
     };
@@ -27,54 +27,55 @@ const LoginForm = () => { // LoginForm is now a functional component instead of 
         setPassword(e.target.value); // set the password in state to the value of the input field
     };
 
-    if (user) { // if the user is logged in, redirect them to the home page
+    if (user) { 
         return <Redirect to="/" />;
     }
 
     return (
         <form onSubmit={onLogin}>
-            <div>
-                {errors.map((error, ind) => ( // if there are errors, display them
+            <div className="errors">
+                {errors.map((error, ind) => (
                     <div key={ind}>{error}</div>
                 ))}
             </div>
-            <div className="LoginInputs">
-            <div className="LoginEmail">
-                <label>Email</label>
+            <div className="login-form">
+                <div className="LoginInputs">
+                <div className="LoginEmail">
                 <input
-                    type="text"
                     name="email"
-                    onChange={updateEmail}
+                    type="text"
+                    placeholder="Email"
                     value={email}
-                    id="loginEmailInput"
-                    placeholder='Email'
-                />
-            </div>
-            <div className="LoginPassword">
-                <label>Password</label>
+                    onChange={updateEmail}
+                    id="LoginEmailInput"
+                />  
+                </div>
+                <div className="LoginPassword">
                 <input
-                    type="password"
                     name="password"
-                    onChange={updatePassword}
+                    type="password"
+                    placeholder="Password"
                     value={password}
-                    id="loginPasswordInput"
-                    placeholder='Password'
+                    onChange={updatePassword}
+                    id="LoginPasswordInput"
                 />
-            </div>
-            <div id="LoginButtons">
-                <span className='LoginButton'>
+                </div>
+                </div>
+                <div id="LoginButton">
+                    <span className="LoginButton">
                     <button type="submit"
                     onClick={() => {
                         setEmail('');
                         setPassword('');
                     }}
-                    >Login</button>
-                </span>
-            </div>
+                    >
+                        Login
+                    </button>
+                    </span>
+                </div>
             </div>
         </form>
     );
 };
 
 export default LoginForm;
-
