@@ -3,32 +3,40 @@ import { BrowserRouter, Router,  Switch } from 'react-router-dom';
 import {useDispatch } from 'react-redux';
 import {  login } from './store/session';
 import LoginForm from './components/auth/LoginForm';
+import {authenticate} from './store/session';
 
 
 
 function App() {
-  const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
-      dispatch(login()); 
+      await dispatch(authenticate());
       setLoaded(true);
     })();
   }, [dispatch]);
 
-   if (!loaded) {
+  if (!loaded) {
     return null;
   }
 
   return (
     <BrowserRouter>
-    <NavBar />
-    <Switch>
-      <Router path='/login'>
-        <LoginForm />
-      </Router>
-    </Switch>
+      <NavBar />
+      <Switch>
+        <Route path="/login">
+          <LoginForm />
+        </Route>
+        <Route path="/sign-up">
+          <SignUpForm />
+        </Route>
+        <Route path="/">
+          <Splash />
+        </Route>
+      </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
