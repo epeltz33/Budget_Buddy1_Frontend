@@ -46,7 +46,7 @@ export const getTransactionByAmount = createSelector(
 	} );
 
 /* TODO:
-1. make function for transaction by payee\
+1. make function for transaction by 
 export const getTransactionByPayee = createSelector(
 
 */
