@@ -10,7 +10,7 @@ const load = (budgets) => {
 }
 
 export const updateBudget = (data) => async (dispatch) => {
-    const response = await fetch(`/ap[i/budgets/${data.id}`, {
+    const response = await fetch(`/api/budgets/${data.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -42,17 +42,17 @@ const budgetReducer = (state = initialState, action) => {
                 ...state,
                 byId: {
                     ...state.byId,
-                
+
                 },
                 allIds: [...state.allIds],
             };
-            const updateBudget = action.budget; // this is the budget that was updated
-            newState.byId[updateBudget.id] = updateBudget; // this is where the budget is updated in the state
+            const updateBudget = action.budget;
+            newState.byId[updateBudget.id] = updateBudget;
             const updateIndex = newState.allIds.findIndex((budget) => budget.id === updateBudget.id);
-            newState.allIds[updateIndex] = updateBudget.id;// the budget is updated in the allIds array 
+            newState.allIds[updateIndex] = updateBudget.id;// the budget is updated in the allIds array
             return newState;
         };
-        case load_budgets: { 
+        case load_budgets: {
             const newState = { byId: {}, allIds: [] };
             action.budgets.forEach((budget) => {
                 newState.byId[budget.id] = budget;
