@@ -1,153 +1,109 @@
+
 const update_accounts = 'accounts/update_accounts';
 const add_accounts = 'accounts/add_accounts';
 const delete_accounts = 'accounts/delete_accounts';
 const load_accounts = 'accounts/load_accounts';
 
 
-const update = ( account ) => ( { // update accounts in the store
-	return { type: update_accounts, accounts };
-
+const add = (newAccount) => {
+	return {type: add_accounts, newAccount };
 };
 
-const add = ( newAccounts ) => ( { // add accounts to the store
-	return { type: add_accounts, accounts }; // type is a required property for actions
-
+const update = (account) => {
+	return {type: update_accounts, account };
 };
 
-const delete = ( prevAccounts ) => ( { // delete accounts from the store
-	return { type: delete_accounts, accounts };
-
+const remove = (accountId) => {
+	return {type: delete_accounts, accountId };
 };
 
-const load = ( accounts ) => ( { // load accounts from the store
-	return { type: load_accounts, accounts };
-
+const load = (accounts) => {
+	return {type: load_accounts, accounts };
 };
 
-export const getAccounts = () => async ( dispatch ) => { // get accounts from the server
-	const response = await fetch( '/api/accounts/' );
+export const addAccounts = () => async (dispatch) => {
+	const response = await fetch('/api/accounts/');
 
-	if ( response.ok ) {
+	if (response.ok) {
 		const accounts = await response.json();
-		dispatch( load( accounts.all_accounts ) );
+		dispatch(load(accounts.all_accounts));
 		return accounts;
-	}
-
-	export const createAccount = ( account ) => async ( dispatch ) => { // create account on the server and add to the store if successful
-		const response = await fetch( '/api/accounts/', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify( newAccount ),
-		} );
-		const account= await response.json();
-		if ( response.ok ) {
-			dispatch( add( data.account ) ); //  add account to the store
-			return account;
-		}
 	};
+};
 
-	export const updateAccount = ( data ) => async ( dispatch ) => { // update account on the server and update the store
-		const response = await fetch( `/api/accounts/${ data.id }/`, {
-			method: 'PUT',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify( account ),
-		} );
+export const createAccount = (newAccount) => async (dispatch) => {
+	const response = await fetch('/api/accounts/', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(newAccount)
+	});
+
+	if (response.ok) {
 		const account = await response.json();
-		if ( response.ok ) {
-			dispatch( update( data.account ) ); // update account in the store
-			return account;
-		}
+		dispatch(add(account));
+		return account;
 	};
+}
 
-	export const deleteAccount = ( data ) => async ( dispatch ) => { // delete account on the server and delete from the store
-		const response = await fetch( `/api/accounts/${ prevAccount.id }`, {
-			method: 'DELETE',
-		} );
+export const updateAccount = (account) => async (dispatch) => {
+	const response = await fetch(`/api/accounts/${account.id}`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(account)
+	});
 
-		if ( response.ok ) {
-			const account = await response.json(); // delete account from the store
-			dispatch( delete ( data.account ) );
-			return account;
-
-		}
+	if (response.ok) {
+		const account = await response.json();
+		dispatch(update(account));
+		return account;
 	};
+}
 
+export const deleteAccount = (accountId) => async (dispatch) => {
+	const response = await fetch(`/api/accounts/${accountId}`, {
+		method: 'DELETE'
+	});
 
-	const initialState = { byId: {}, allIds: [] };
-
-	const accountReducer = ( state = initialState, action ) => {
-
-		switch ( action.type ) {
-			case update_accounts: {
-				const { accounts } = action;
-				const newById = { ...state.byId };
-				const newAllIds = [ ...state.allIds ];
-				accounts.forEach( ( account ) => {
-					newById[account.id] = account;
-
-					if ( !newAllIds.includes( account.id ) ) {
-						newAllIds.push( account.id );
-					}
-
-				} );
-
-				return { byId: newById, allIds: newAllIds };
-
-			}
-
-			case add_accounts: {
-				const { accounts } = action;
-				const newById = { ...state.byId };
-				const newAllIds = [ ...state.allIds ];
-				accounts.forEach( ( account ) => {
-					newById[account.id] = account;
-
-					if ( !newAllIds.includes( account.id ) ) {
-						newAllIds.push( account.id );
-					}
-
-				} );
-
-				return { byId: newById, allIds: newAllIds };
-
-			}
-
-			case delete_accounts: {
-				const { accounts } = action;
-				const newById = { ...state.byId };
-				const newAllIds = [ ...state.allIds ];
-				accounts.forEach( ( account ) => {
-					delete newById[account.id];
-					newAllIds = newAllIds.filter( ( id ) => id !== account.id );
-
-				} );
-
-				return { byId: newById, allIds: newAllIds };
-
-			}
-
-			case load_accounts: {
-				const { accounts } = action;
-				const newById = {};
-				const newAllIds = [];
-				accounts.forEach( ( account ) => {
-					newById[account.id]
-					newAllIds.push( account.id );
-
-				} );
-
-				return { byId: newById, allIds: newAllIds };
-
-			}
-
-			default:
-				return state;
-		};
-
+	if (response.ok) {
+		dispatch(remove(accountId));
+		return accountId;
 	};
+}
 
-	export default accountReducer; // export the reducer to the store index.js
+
+const initialState = {byId: {}, all: []};
+
+const accountReducer = (state = initialState, action) => {
+	let newState;
+	switch (action.type) { //action.type is the action that is being dispatched from the action creator
+		case add_accounts:
+			newState = Object.assign({}, state); // create a copy of the state   
+			newState.byId[action.newAccount.id] = action.newAccount; // add the new account to the byId object 
+			newState.all.push(action.newAccount.id); // add the new account id to the all array
+			return newState; // return the new state 
+		case update_accounts:  
+			newState = Object.assign({}, state); // create a copy of the state object and update the account with the new account
+			newState.byId[action.account.id] = action.account; // 
+			return newState; // 
+		case delete_accounts:
+			newState = Object.assign({}, state); // create a copy of the state 
+			delete newState.byId[action.accountId]; // delete the account from the byId object
+			newState.all = newState.all.filter(id => id !== action.accountId); // remove the account id from the all array
+			return newState;
+		case load_accounts:
+			newState = Object.assign({}, state); 
+			action.accounts.forEach(account => { // loop through the accounts array
+				newState.byId[account.id] = account; // add each account to the byId object
+				newState.all.push(account.id); // add each account id to the all array
+			});
+			return newState;
+		default:
+			return state; // return the state if no action is dispatched
+	};
+}
+
+export default accountReducer; // export the reducer so it can be used in the store

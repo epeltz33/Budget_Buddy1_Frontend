@@ -8,143 +8,104 @@ const add = ( newTransaction ) => {
 	return { type: add_transaction, newTransaction };
 };
 
-const delete = ( prevTransaction ) => {
-	return { type: delete_transaction, prevTransaction };
-};
+const remove = ( transactionId ) => {
+	return { type: delete_transaction, transactionId };
+}
 
 const update = ( transaction ) => {
 	return { type: update_transaction, transaction };
-};
+}
 
-const load = (transactions) => {
-    return { type: load_transactions, transactions };
-};
+const load = ( transactions ) => {
+	return { type: load_transactions, transactions };
+}
 
 export const getTransactions = () => async ( dispatch ) => {
-	const response = await fetch( '/api/transactions' );
+	const response = await fetch('/api/transactions');
 
-	if ( response.ok ) {
-		const transactions = await response.json();
-		dispatch( load( transactions.all_transactions ) );
+	if (response.ok) {
+		const transactions = await response.json
+		dispatch(load(transactions.all_transactions));
 		return transactions;
 	}
-}
-export const createTransactions = ( newTransaction ) => async ( dispatch ) => {
-	const response = await fetch( '/api/transactions', {
+};
+
+export const createTransaction = ( newTransaction ) => async ( dispatch ) => {
+	const response = await fetch('/api/transactions', {
 		method: 'POST',
-		body: JSON.stringify( newTransaction ),
 		headers: {
-			'Content-Type': 'application/json'
-		});
-	if ( response.ok ) {
-		const transactions = await response.json();
-        dispatch( load( transactions.all_transactions ) );
-		return transactions;
-	};
-	else {
-        console.log( response );
-};
-	return null; // if the response was not ok
-};
-
-
-export const updateTransaction = ( data ) => async ( dispatch ) => {
-	const response = await fetch( `/api/transactions/${data.id}`, {
-		method: 'PUT',
-		body: JSON.stringify( data ),
-		headers: {
-			'Content-Type': 'application/json'
-		}
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(newTransaction), 
 	});
 
-	if ( response.ok ) {
-		const transaction = await response.json();
-		dispatch( update( transaction ) ); // update the transaction with the updated transaction data
+	if (response.ok) {
+		const transaction = await response.json(); // { transaction: { id: 1, ... } }  // this is the transaction object that was created
+		dispatch(add(transaction));
 		return transaction;
-	};
+	}
 }
 
-export const deleteTransaction = ( prevTransaction ) => async ( dispatch ) => {
-	const response = await fetch( `/api/transactions/${prevTransaction.id}`, {
+export const deleteTransaction = ( transactionId ) => async ( dispatch ) => {
+	const response = await fetch(`/api/transactions/${transactionId}`, {
 		method: 'DELETE',
 	});
 
-	if ( response.ok ) {
-		const transaction = await response.json();
-		dispatch( remove( transaction ) );
+	if (response.ok) {
+		dispatch(remove(transactionId));
+		return response;
+	}
+}
 
-		);
-	};
-	return null; // if the response was not ok
-};
+export const updateTransaction = ( transaction ) => async ( dispatch ) => {
+	const response = await fetch(`/api/transactions/${data.id}`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(transaction),
+	});
 
+	if (response.ok) {
+		dispatch(update(transaction));
+		return transaction; // this is the transaction object that was updated
+	}
+}
 
-
-const initialState = { byId: {},  all: []};
+const initialState = {}; // this is an object with transaction ids as keys and transaction objects as values
 
 const transactionReducer = ( state = initialState, action ) => {
-
-	switch ( action.type ) {
-		case add_transactions: {
-			const newState = {
-				...state,
-				byId: {},
-				all: []
-			};
-
-			for ( let i = 0; i < action.transactions.length; i++ ) {
-				let transaction = action.transactions[i];
-				newState.byId[transaction.id] = transaction;
-				newState.transactions.all.push( transaction ); // push the transaction to the array of transactions
-			};
+	let newState;
+	switch (action.type) {
+		case add_transaction:
+			newState = { ...state };
+			newState[action.newTransaction.id] = action.newTransaction;
 			return newState;
-		};
-		case delete_transaction: {
-			const deleteId = action.prevTransaction.id;
-			const newState = {
-				...state,
-				byId: { ...state.byId }, // copy the byId object from the state
-				all: state.all.filter( ( transaction ) => transaction.id !== deleteId ) // filter out the transaction with the id of the deleted transaction
-			};
-			delete newState.byId[action.prevTransaction.id]
+		case delete_transaction:
+			newState = { ...state };
+			delete newState[action.transactionId];
 			return newState;
-		};
-
-		case update_transaction: {
-			const editTransaction = action.transaction; // get the transaction from the action
-			const updateId = editTransaction.id;
-			const newState = {
-				...state,
-				byId: { ...state.byId },
-				[updateId]: editTransaction
-			},
-				all: state.all.map( ( transaction ) =>
-					transaction.id === updateId ? editTransaction : transaction )
-		};
+		case update_transaction:
+			newState = { ...state };
+			newState[action.transaction.id] = action.transaction;
 			return newState;
-		};
-        case load_transactions: {
-            const newState = {
-				...state,
-				byId: {},
-				all: []
-			};
-			for ( let i = 0; i < action.transactions.length; i++ ) {
-				let transaction = action.transactions[i];
-				newState.byId[transaction.id] = transaction;
-				newState.transactions.all.push( transaction );
+		case load_transactions:
+			newState = { ...state };
+			action.transactions.forEach(transaction => {
+				newState[transaction.id] = transaction;
+			});
+			return newState;
+		case delete_account:
+			newState = { ...state };
+			for (let transactionId in newState) {
+				if (newState[transactionId].accountId === action.accountId) {
+					delete newState[transactionId];
+				}
 			}
 			return newState;
+		default:
+			return state;
 	};
-Object.values( newState.byId ).forEach( ( transaction ) =>
-	transaction.accountId === deletedId ? delete newState.byId[transaction.id] : null ) // delete the transaction from the byId object if the transaction's accountId is the same as the deleted account's id
-	);
-	return newState;
-  };
-  default:
-	return state;
- };
-
 };
 
 export default transactionReducer;

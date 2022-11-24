@@ -1,5 +1,4 @@
-import {createSelector} from 'reselect'; //  create a selector function to get the account state
-
+import {createSelector} from 'reselect'; 
 
 const getAccount = state => state.account.byId; //  get the account state from the store state
 
