@@ -3,5 +3,8 @@
 		"activityBar.background": "#392932",
 		"titleBar.activeBackground": "#503946",
 		"titleBar.activeForeground": "#FBFAFB"
-	}
+	},
+	"cSpell.words": [
+		"Navlink"
+	]
 }
