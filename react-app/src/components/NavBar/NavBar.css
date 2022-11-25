@@ -1,0 +1,59 @@
+.NavBar {
+  background-color: rgba(10, 147, 150, 1);
+  height: 2.5em;
+  width: 60%;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.3em;
+  color: #F2F2F2;
+  /* box-shadow: 2px 2px 2px #001219; */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+  padding: 0 0.5em;
+}
+
+.NavBar ul{
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: space-around; */
+  /* align-items: center; */
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1em;
+  /* padding: 0.1em;
+  margin: 0.1em; */
+}
+
+.NavBar button {
+  display:inline-block;
+  /* padding:0.35em 1.2em; */
+  /* margin:0 0.3em 0.3em 0; */
+  /* border-radius:0.12em; */
+  border:0.1em solid transparent;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #F2F2F2;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: inherit;
+  border-radius: 0.3em;
+}
+
+.NavBar button:hover{
+  /* border:0.1em solid #001219; */
+  background-color: #005f73;
+}
+
+#WelcomeMessage {
+  border: 1px solid rgba(10, 147, 150, 1);
+  box-shadow: 1px 1px rgba(10, 147, 150, 0.2);
+}
+
+.NavBarDivider {
+  color: rgba(0, 95, 115, 1);
+  padding: 0 1em;
+}
