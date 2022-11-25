@@ -1,0 +1,83 @@
+#LoginButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.SignUpForm, .LoginForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 500px;
+    min-height: 500px;
+    font-weight: 550;
+    font-size: 1.5rem;
+}
+
+.LoginButton, .SignUpButton,
+.LoginButton:active, .SignUpButton:active,
+.LoginButton:focus, .SignUpButton:focus {
+    display:inline-block;
+  border:0.1em solid #F2F2F2;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #F2F2F2;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: inherit;
+  border-radius: 0.3em;
+}
+
+.LoginButton:hover, .SignUpButton:hover {
+    border:0.1em solid #001219;
+    background-color: #001219;
+}
+
+
+.LoginForm form, .SignUpForm form {
+  /* border: 1px solid black; */
+  /* box-shadow: 10px 5px 5px #001219; */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  padding: 1.8em;
+  background-color: rgba(0, 95, 115, 1);
+  color: #F2F2F2;
+  border-radius: 0.3em;
+}
+
+.LoginForm input, .SignUpForm input {
+  border-radius: 0.3em;
+  margin: 0.2em 0;
+  padding: 0.2em;
+  border: none;
+}
+
+.SignUpButton {
+  display: flex;
+  justify-content: center;
+}
+
+.LoginForm img {
+  height: 50%;
+  width: 50%;
+  margin-bottom: 1em;
+}
+
+.SignUpForm img {
+  height: 40%;
+  width: 40%;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+}
+
+.LoginErrors div, .SignUpErrors div{
+  color: red !important;
+}
+
+.LoginErrors, .SignUpErrors {
+  border-radius: 0.3em;
+  padding: 0.3em;
+  margin-bottom: 0.5em;
+  background-color: white;
+}
