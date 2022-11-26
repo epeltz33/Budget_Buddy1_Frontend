@@ -1,101 +1,104 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session"; //  import the thunk that will be used to sign up a user
 import "./auth.css";
 
 
 const SignUpForm = () => {
-    const dispatch = useDispatch(); 
-    const user = useSelector((state) => state.session.user); 
-    const [username, setUsername] = useState(""); 
-    const [email, setEmail] = useState(""); 
-    const [password, setPassword] = useState(""); 
-    const [confirmPassword, setConfirmPassword] = React.useState("");
-    const [errors, setErrors] = React.useState([]); 
-    
+  const [errors, setErrors] = useState([]);
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+
+  const user = useSelector(state => state.session.user);
+
+  const dispatch = useDispatch();
+
     const onSignUp = async (e) => {
-        e.preventDefault(); //  prevent the default behavior of the form
-        if (password === confirmPassword) {
-        const data = await dispatch(signUp(username, email, password)); //  call the sign up thunk and pass in the username, email, and password
+    e.preventDefault();
+    if (password === repeatPassword) {
+        const data = await dispatch(signUp(username, email, password));
         if (data) {
             setErrors(data);
         }
+        } else {
+            setErrors(['Confirm Password field must be the same as the Password field']);
         }
     };
-    
+
     const updateUsername = (e) => {
-        setUsername(e.target.value); //  set the username in state to the value of the input field
-    };
-    
-    const updateEmail = (e) => {
-        setEmail(e.target.value); //  set the email in state to the value of the input field
-    };
-    
-    const updatePassword = (e) => {
-        setPassword(e.target.value); //  set the password in state to the value of the input field
-    };
-    
-    const updateConfirmPassword = (e) => {
-        setConfirmPassword(e.target.value); //  set the confirm password in state to the value of the input field
-    };
-    
-    if (user) {
-        return <Redirect to="/" />;
+        setUsername(e.target.value);
     }
-    
+
+    const updateEmail = (e) => {
+        setEmail(e.target.value);
+    }
+
+    const updatePassword = (e) => {
+        setPassword(e.target.value);
+    }
+
+    const updateRepeatPassword = (e) => {
+        setRepeatPassword(e.target.value);
+    }
+
+    if (user) {
+        return <Redirect to='/' />;
+    }
+
     return (
-        <div className="auth-container">
-        <div className="SignUpErrors">
-            {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-            ))}
-        </div>
         <form onSubmit={onSignUp}>
-           <div className="SignUpUserName">
-            <input
-                type="text"
-                name="username"
-                onChange={updateUsername}
-                value={username}
-                placeholder="Username"
-                id="SignUpUserNameInput"
-            ></input>
+            <div className='errors'>
+                {errors.map((error, ind) => (
+                    <div key={ind}>{error}</div>
+                ))}
             </div>
-            <div className="SignUpEmail">
-            <input
-                type="text"
-                name="email"
-                onChange={updateEmail}
-                value={email}
-                placeholder="Email"
-                id="SignUpEmailInput"
-            ></input>
+            <div className='SignUpUsername'>
+                <input
+                    name='username'
+                    type='text'
+                    value={username}
+                    onChange={updateUsername}
+                    id='SignUpUsernameInput'
+                    placeholder='Username'
+                ></input>
             </div>
-            <div className="SignUpPassword">
-            <input
-                type="password"
-                name="password"
-                onChange={updatePassword}
-                value={password}
-                placeholder="Password"
-                id="SignUpPasswordInput"
-            ></input>
+            <div className='SignUpEmail'>
+                <input
+                    name='email'
+                    type='text'
+                    value={email}
+                    onChange={updateEmail}
+                    id='SignUpEmailInput'
+                    placeholder='Email'
+                ></input>
             </div>
-            <div className="SignUpConfirmPassword">
-            <input
-                type="password"
-                name="confirm_password"
-                onChange={updateConfirmPassword}
-                value={confirmPassword}
-                placeholder="Confirm Password"
-                id="SignUpConfirmPasswordInput"
-            ></input>
+            <div className='SignUpPassword'>
+                <input
+                    name='password'
+                    type='password'
+                    value={password}
+                    onChange={updatePassword}
+                    id='SignUpPasswordInput'
+                    placeholder='Password'
+                ></input>
             </div>
-            <div className="SignUpButton">
-            <button type="submit" id="SignUpButton">Sign Up</button>
+            <div className='SignUpRepeatPassword'>
+                <input
+                    name='repeat_password'
+                    type='password'
+                    value={repeatPassword}
+                    onChange={updateRepeatPassword}
+                    id='SignUpRepeatPasswordInput'
+                    placeholder='Confirm Password'
+                ></input>
+            </div>
+            <div className= 'SignUpButton'>
+                <button type='submit' id='SignUpButton'>Sign Up</button>
             </div>
         </form>
-        </div>
     );
 };
 

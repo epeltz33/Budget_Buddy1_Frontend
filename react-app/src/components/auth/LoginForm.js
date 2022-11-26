@@ -1,81 +1,80 @@
-  import React, { Component } from 'react'; 
-import {Redirect} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
-import {login} from '../../store/session';
-import './auth.css';
+  import React, {useState} from "react";
+  import { Redirect } from "react-router-dom";
+  import { login } from "../../store/session";
+  import { useSelector, useDispatch } from "react-redux";
 
-const LoginForm = () => { // LoginForm is now a functional component instead of a class component  
-    const dispatch = useDispatch(); // this is the hook that allows the dispatch function
-    const user = useSelector(state => state.session.user); 
-    const [email, setEmail] = useState(''); 
-    const [password, setPassword] = useState('');
-    const [errors, setErrors] = useState([]);
+  const LoginForm = () => {
+  const [errors, setErrors] = useState([]);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const user = useSelector(state => state.session.user);
+  const dispatch = useDispatch();
 
-    const onLogin = async (e) => { //  this function is called when the user clicks the login button
-        e.preventDefault(); // prevent the default behavior of the form
-        const data = dispatch(login(email, password)); // call the login thunk and pass in the email and password
-        if (data) { 
-            setErrors(data);
-        }
-    };
-    
-    const updateEmail = (e) => { // this function is called when the user types in the email input
-        setEmail(e.target.value); // set the email in state to the value of the input field
-    };
-
-    const updatePassword = (e) => { // this function is called when the user types in the password input
-        setPassword(e.target.value); // set the password in state to the value of the input field
-    };
-
-    if (user) { 
-        return <Redirect to="/" />;
+  const onLogin = async (e) => {
+    e.preventDefault();
+    const data = await dispatch(login(email, password));
+    if (data) {
+      setErrors(data);
     }
+  };
 
-    return (
-        <form onSubmit={onLogin}>
-            <div className="errors">
-                {errors.map((error, ind) => (
-                    <div key={ind}>{error}</div>
-                ))}
-            </div>
-            <div className="login-form">
-                <div className="LoginInputs">
-                <div className="LoginEmail">
-                <input
-                    name="email"
-                    type="text"
-                    placeholder="Email"
-                    value={email}
-                    onChange={updateEmail}
-                    id="LoginEmailInput"
-                />  
-                </div>
-                <div className="LoginPassword">
-                <input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={updatePassword}
-                    id="LoginPasswordInput"
-                />
-                </div>
-                </div>
-                <div id="LoginButton">
-                    <span className="LoginButton">
-                    <button type="submit"
-                    onClick={() => {
-                        setEmail('');
-                        setPassword('');
-                    }}
-                    >
-                        Login
-                    </button>
-                    </span>
-                </div>
-            </div>
-        </form>
-    );
+  const updateEmail = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const updatePassword = (e) => {
+    setPassword(e.target.value);
+  };
+
+  if (user) {
+    return <Redirect to='/' />;
+  }
+
+  return (
+    <form onSubmit={onLogin}>
+      <div className='errors'>
+        {errors.map((error, ind) => (
+          <div key={ind}>{error}</div>
+        ))}
+      </div>
+      <div>
+       <div className='LoginInputs'>
+          <div className='LoginEmail'>
+            {/* <label htmlFor='email' id='LoginEmailLabel'>Email</label> */}
+            <input
+              name='email'
+              type='text'
+              value={email}
+              onChange={updateEmail}
+              id='LoginEmailInput'
+              placeholder='Email'
+            />
+          </div>
+          <div className='LoginPassword'>
+            {/* <label htmlFor='password' id='LoginPasswordLabel'>Password</label> */}
+            <input
+              name='password'
+              type='password'
+              value={password}
+              onChange={updatePassword}
+              id='LoginPasswordInput'
+              placeholder='Password'
+            />
+          </div>
+        </div>
+        <div id="LoginButtons">
+          <span className='LoginButton'>
+            <button type='submit'>Login</button>
+          </span>
+          <span className='DemoButton'>
+            <button type='submit'>Demo</button>
+          </span>
+        </div>
+      </div>
+    </form>
+  );
 };
 
 export default LoginForm;
+
+           
