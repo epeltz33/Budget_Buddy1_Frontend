@@ -5,9 +5,7 @@ import LoginForm from './components/auth/LoginForm';
 import {authenticate} from './store/session';
 import NavBar from './components/NavBar/Navbar';
 import SignUpForm from './components/auth/SignUpForm';
- 
-
-
+// import Footer from './components/Footer/Footer';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
