@@ -57,3 +57,19 @@
   color: rgba(0, 95, 115, 1);
   padding: 0 1em;
 }
+
+.NavBarDivider:hover {
+  color: rgba(25, 11, 179, 0.5);
+}
+
+.NavBarDivider:active {
+  color: rgba(0, 95, 115, 0.2);
+}
+
+.NavBarDivider:visited {
+  color: rgba(0, 95, 115, 0.2);
+}
+
+#NavBarLogo {
+  font-weight:800;
+}

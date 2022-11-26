@@ -1,5 +1,5 @@
   import React, {useState} from "react";
-  import { Redirect } from "react-router-dom";
+  import { Navigate } from "react-router-dom";
   import { login } from "../../store/session";
   import { useSelector, useDispatch } from "react-redux";
 
@@ -27,7 +27,7 @@
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Navigate to='/' />;
   }
 
   return (
@@ -65,9 +65,6 @@
         <div id="LoginButtons">
           <span className='LoginButton'>
             <button type='submit'>Login</button>
-          </span>
-          <span className='DemoButton'>
-            <button type='submit'>Demo</button>
           </span>
         </div>
       </div>

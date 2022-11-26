@@ -2,7 +2,7 @@ const update_budget = 'budgets/update_budget';
 const load_budgets = 'budgets/load_budgets';
 
 const update = (budget) => {
-    return { type: update_budgets, budget };
+    return { type: update_budget, budget };
 };
 
 const load = (budgets) => {

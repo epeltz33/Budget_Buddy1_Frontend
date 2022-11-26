@@ -1,24 +1,27 @@
-#LoginButtons {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
 .SignUpForm, .LoginForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-width: 500px;
-    min-height: 500px;
-    font-weight: 550;
-    font-size: 1.5rem;
+  min-width: 500px;
+  min-height: 500px;
+  font-weight: 600;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
-.LoginButton, .SignUpButton,
-.LoginButton:active, .SignUpButton:active,
-.LoginButton:focus, .SignUpButton:focus {
-    display:inline-block;
+#LoginButtons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.LoginButton, .SignUpButton, .DemoButton {
+  margin: 0.8em 0.5em 0 0.5em;
+  /* margin-top: 0.8em; */
+}
+
+.LoginButton button, .SignUpButton button, .DemoButton button {
+  display:inline-block;
   border:0.1em solid #F2F2F2;
   box-sizing: border-box;
   text-decoration:none;
@@ -30,11 +33,14 @@
   border-radius: 0.3em;
 }
 
-.LoginButton:hover, .SignUpButton:hover {
-    border:0.1em solid #001219;
-    background-color: #001219;
+.LoginButton button:hover,  .SignUpButton button:hover, .DemoButton button:hover {
+  border:0.1em solid #001219;
+  background-color: #001219;
 }
 
+/* .LoginForm label, .SignUpForm label {
+  margin: 0.3em;
+} */
 
 .LoginForm form, .SignUpForm form {
   /* border: 1px solid black; */
@@ -81,3 +87,16 @@
   margin-bottom: 0.5em;
   background-color: white;
 }
+
+/* #LoginEmailLabel {
+  margin-right: 2.3em;
+  text-align: center;
+}
+#SignUpEmailLabel {
+  margin-right: 2.7em;
+  text-align: center;
+}
+#SignUpPasswordLabel, #SignUpRepeatPasswordLabel {
+  margin-right: 0.7em;
+  text-align: center;
+} */

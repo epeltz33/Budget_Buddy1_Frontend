@@ -1,9 +1,10 @@
 import React, { useState, useEffect} from 'react';
-import { BrowserRouter, Router,  Switch } from 'react-router-dom';
+import { BrowserRouter, Route,  Routes } from 'react-router-dom';
 import {useDispatch } from 'react-redux';
-import {  login } from './store/session';
 import LoginForm from './components/auth/LoginForm';
 import {authenticate} from './store/session';
+import NavBar from './components/NavBar/Navbar';
+import SignUpForm from './components/auth/SignUpForm';
  
 
 
@@ -13,7 +14,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
+      dispatch(authenticate());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -25,20 +26,13 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <Switch>
-        <Route path="/login">
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up">
-          <SignUpForm />
-        </Route>
-        <Route path="/">
-          <Splash />
-        </Route>
-      </Switch>
-      <Footer />
+      <Routes>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/sign-up" element={<SignUpForm />} />
+      </Routes>
     </BrowserRouter>
   );
 }
 
 export default App;
+        
