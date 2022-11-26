@@ -7,5 +7,5 @@
 	"cSpell.words": [
 		"Navlink"
 	],
-	"files.autoSave": "afterDelay"
+	"files.autoSave": "onFocusChange",
 }
