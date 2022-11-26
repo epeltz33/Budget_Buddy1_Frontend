@@ -6,5 +6,6 @@
 	},
 	"cSpell.words": [
 		"Navlink"
-	]
+	],
+	"files.autoSave": "afterDelay"
 }
