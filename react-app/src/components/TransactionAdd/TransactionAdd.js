@@ -12,7 +12,7 @@ export default function AccountAdd({ accounts, setIsAdd, categories }) {
   const [categoryId, setCategoryId] = useState("");
   const [accountId, setAccountId] = useState("");
   const [date, setDate] = useState("");
-  const [payee, setPayee] = useState("");
+  const [payee, setPayee] = useState(""); // Payee is the name of the person or company that you paid
 
   const dispatch = useDispatch();
 
@@ -55,6 +55,7 @@ export default function AccountAdd({ accounts, setIsAdd, categories }) {
   };
 
   const dropIn = {
+    // animation for modal to drop in from top of page
     hidden: {
       y: "-100vh",
       opacity: 0,
