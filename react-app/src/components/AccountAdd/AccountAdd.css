@@ -1,0 +1,67 @@
+.AccountAdd form {
+  background-color: rgba(244, 107, 23, 0.8);
+  font-weight: 600;
+  font-size: 18px;
+  border-radius: 0.3em;
+}
+
+.AccountAdd {
+    z-index: 1000;
+    margin: 0px;
+    padding: 2vh;
+    min-height: 10vh;
+    min-width: 19vw;
+}
+
+.AccountAdd button {
+    background-color: inherit;
+    margin: 5px;
+    display: inline-block;
+    text-align: center;
+    transition: all 0.5s ease;
+    border-radius: 0.3em;
+    text-decoration: none;
+    color: #f2f2f2;
+    box-sizing: border-box;
+    font-weight: 300;
+}
+
+.submit-button-active {
+  border:0.1em solid #F2F2F2;
+}
+
+.submit-button-active:hover {
+  border:0.1em solid #001219;
+  background-color: #001219;
+}
+
+.submit-button-disabled {
+  border:0.1em solid transparent;
+}
+
+/* .AccountFormOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 1000;
+} */
+
+.AccountAdd form {
+  padding: 2em;
+  color: white;
+}
+
+
+.AccountAdd input {
+  margin: 1em;
+  border-radius: 0.3em;
+  border: none;
+}
+
+.AccountAddForm form h3 {
+  padding: 2em;
+
+}
