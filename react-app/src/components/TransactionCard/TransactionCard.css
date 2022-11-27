@@ -1,0 +1,76 @@
+.TransactionCard thead tr {
+  color: #ffffff;
+  text-align: left;
+  font-weight: 600;
+  font-size: 20px;
+  background-color: rgba(10, 147, 150, 0.8);
+}
+
+.TransactionCard th, .TransactionCard tr {
+  padding: 12px 15px;
+}
+
+.TransactionCard td {
+  padding-left: 12px;
+}
+
+.TransactionCard tbody tr {
+  border-bottom: 1px solid rgba(148, 210, 189, 0.6);
+}
+
+.TransactionCard tbody tr:nth-of-type(even) { /* even rows */
+  background-color: rgba(148, 210, 189, 0.6);
+}
+
+.TransactionCard tbody tr:last-of-type {
+  border-bottom: 2px solid rgba(148, 210, 189, 0.8);
+}
+
+.TransactionCard {
+  display: flex;
+  flex-direction: column;
+  background-color: #F2F2F2;
+  border-radius: 0.3em;
+  /* margin: 1em; */
+  margin: 1.4vw;
+  padding: 1em;
+  /* box-shadow: 10px 5px 5px #001219; */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+.TableAmount, .TableDate, .TablePayee {
+  width: 11vw;
+}
+
+.TableCategory {
+  width: 13vw;
+}
+
+.TableAccount {
+  width: 15vw;
+}
+
+.TableButtons {
+  width: 8vw;
+}
+
+.TransactionCard input {
+  width: 11vw;
+}
+
+.TransactionCard h3 {
+  margin-bottom: 0.6em;
+}
+
+.TransactionCard table {
+  align-self: center;
+  table-layout: fixed;
+  border-collapse:collapse;
+  overflow: hidden;
+  width: 75vw;
+  border-radius: 5px 5px 0 0;
+  background-color: rgba(148, 210, 189, 0.2);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
