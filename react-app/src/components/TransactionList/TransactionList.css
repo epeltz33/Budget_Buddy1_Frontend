@@ -1,0 +1,101 @@
+.TransactionList table {
+  table-layout: fixed;
+  min-width: 75vw;
+  border-collapse:collapse;
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+  background-color: #F2F2F2;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.TransactionList thead tr {
+  color: #ffffff;
+  text-align: left;
+  font-weight: 600;
+  font-size: 20px;
+  background-color: rgba(10, 147, 150, 0.8);
+}
+
+.TransactionList th, .TransactionList tr {
+  padding: 12px 15px;
+}
+
+.TransactionList td {
+  padding-left: 12px;
+}
+
+.TransactionList tbody tr {
+  border-bottom: 1px solid rgba(148, 210, 189, 0.6);
+}
+
+.TransactionList tbody tr:nth-of-type(even) {
+  background-color:  rgba(148, 210, 189, 0.6);
+}
+
+.TransactionList tbody tr:last-of-type {
+  border-bottom: 2px solid rgba(148, 210, 189, 0.8);
+}
+
+.TransactionList th {
+  cursor: pointer;
+}
+
+.TransactionList .th-sort-asc::after {
+  content: "\25b4";
+}
+
+.TransactionList .th-sort-desc::after {
+  content: "\25be";
+}
+
+.TransactionList .th-sort-asc::after, .TransactionList .th-sort-desc::after {
+  margin-left: 5px;
+}
+
+.TransactionList .th-sort-asc, .TransactionList .th-sort-desc {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.TransactionAdd {
+  margin-bottom: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+#CategorySelect {
+  width: 12vw;
+}
+
+#AccountSelect {
+  width: 14vw;
+}
+
+.TransactionList input {
+  width: 11vw;
+}
+
+.TransactionList {
+  margin: 1em;
+}
+
+.editButtons button, .saveButtons button {
+  /* background-color: transparent;
+  border: 0.1em solid transparent; */
+  font-size: 14px;
+  display:inline-block;
+  border:0.1em solid transparent;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #001219;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: transparent;
+  border-radius: 0.3em;
+}
+
+.editButtons button:hover, .saveButtons button:hover {
+  /* border: 0.1em solid #001219; */
+  /* background-color: #F2F2F2; */
+  background-color: #0A9396;
+  color: #F2F2F2;
+}
