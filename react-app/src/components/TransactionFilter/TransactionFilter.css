@@ -1,0 +1,79 @@
+.TransactionFilter {
+  margin: 0vh;
+  padding: 4vh;
+  /* min-height: 30vh;
+  min-width: 58vw; */
+  z-index: 1000;
+  /* position: fixed;
+  top: 35%;
+  left: 25%;
+  transform: translate(-50%, -50%); */
+  background-color: rgba(244, 107, 23, 0.8);
+  border-radius: 0.3em;
+  color: white !important;
+}
+
+#TransactionFilterDate {
+  /* background-color: rgba(244, 107, 23, 0.8); */
+  top: 18%;
+  left: 35%;
+  padding: 4vh;
+  /* color: white !important; */
+}
+
+#TransactionFilterDate .TransactionFilterText span{
+  padding-bottom: 5em;
+}
+
+.TransactionFilter form {
+  /* background-color: rgba(244, 107, 23, 0.8); */
+  font-weight: 600;
+  font-size: 18px;
+  /* color: white !important; */
+  /* padding: 1em; */
+  border-radius: 0.3em;
+}
+
+.TransactionFilter select {
+  margin: 1em;
+  width: 30vw;
+  border-radius: 0.3em;
+}
+
+.TransactionFilter input {
+  margin: 1em;
+  width: 30vw;
+  border-radius: 0.3em;
+}
+
+.TransactionFilter option {
+  width: 30vw;
+}
+
+.TransactionFilterButtons {
+  display: flex;
+  gap: 0.6em;
+  justify-content: center;
+}
+
+.TransactionFilterButtons button {
+  display:inline-block;
+  border:0.1em solid #F2F2F2;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #F2F2F2;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: inherit;
+  border-radius: 0.3em;
+}
+
+.TransactionFilterButtons button:hover {
+  border:0.1em solid #001219;
+  background-color: #001219;
+}
+
+.react-datepicker {
+  margin: 1em;
+}
