@@ -1,7 +1,7 @@
 {
 	"workbench.colorCustomizations": {
-		"activityBar.background": "#392932",
-		"titleBar.activeBackground": "#503946",
+		"activityBar.background": "#df1286",
+		"titleBar.activeBackground": "#df1286",
 		"titleBar.activeForeground": "#FBFAFB"
 	},
 	"cSpell.words": [
