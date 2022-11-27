@@ -1,0 +1,56 @@
+.TransactionSearchOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 1000;
+}
+
+.TransactionSearch input {
+  margin: 1em;
+  width: 30vw;
+  border-radius: 0.3em;
+}
+
+.TransactionSearchButtons {
+  display: flex;
+  gap: 0.6em;
+  justify-content: center;
+}
+
+.TransactionSearchButtons button {
+  display:inline-block;
+  border:0.1em solid #F2F2F2;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #F2F2F2;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: inherit;
+  border-radius: 0.3em;
+}
+
+.TransactionSearchButtons button:hover {
+  border:0.1em solid #001219;
+  background-color: #001219;
+}
+
+.TransactionSearch {
+  margin: 0px;
+  padding: 2vh;
+  /* min-height: 25vh;
+  min-width: 30vw; */
+  z-index: 1000;
+  /* position: fixed;
+  top: 30%;
+  left: 30%;
+  transform: translate(-50%, -50%); */
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(244, 107, 23, 0.8);
+  color: #F2F2F2;
+  border-radius: 0.3em;
+}
