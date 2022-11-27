@@ -1,0 +1,11 @@
+.Splash {
+  min-width: 500px;
+  min-height: 500px;
+  background-image: url('/src/images/cheddar-logo.png');
+  background-position: center;
+}
+
+.HomeContainer {
+  width: 100%;
+  display: flex;
+}

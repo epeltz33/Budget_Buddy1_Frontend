@@ -1,0 +1,104 @@
+.Transactions ul {
+  list-style-type: none;
+  padding-inline-start: 0.1em;
+}
+
+.Transactions li {
+ font-size: 10px;
+ margin: 5px;
+}
+
+.Transactions a {
+  color: #F2F2F2 !important;
+  text-decoration: none !important;
+ }
+
+#SideMax {
+  position: sticky;
+  left: 22%;
+}
+
+#SideMin {
+  position: sticky;
+  left: 25%;
+}
+
+#SideMin button, #SideMax button {
+  font-size: 8px;
+  border-radius: 2em;
+  display:inline-block;
+  border:0.1em solid #F2F2F2;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #F2F2F2;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: inherit;
+  /* border-radius: 0.3em; */
+}
+
+#MinSidePanel {
+  width: 11vw;
+}
+
+#MaxSidePanel {
+  width: 21vw;
+}
+
+#MaxSidePanel .Transactions {
+  margin-top: 37%;
+}
+
+#MinSidePanel .Transactions {
+  margin-top: 26%;
+}
+
+.FilterButtons {
+  cursor: pointer;
+}
+
+.NewTransactionButton {
+  font-size: 10px !important;
+  margin: 0;
+  /* padding: 0; */
+  margin-bottom: 0.5em;
+  display:inline-block;
+  border:0.1em solid #F2F2F2;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #F2F2F2;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: inherit;
+  border-radius: 0.3em;
+}
+
+.NewTransactionButton:hover, #SideMin button:hover, #SideMax button:hover {
+  border:0.1em solid #001219;
+  background-color: #001219;
+}
+
+.SidePanel h3 {
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.SidePanel {
+  background-color: rgba(0, 95, 115, 1);
+  border-radius: 0.3em;
+  padding: 0.5em;
+  /* margin: 0.5em; */
+  color: #F2F2F2;
+  position: sticky;
+  /* top: 0; */
+  height: fit-content;
+  min-height: 90vh;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  top: 1.4vw;
+  margin-top: 1.4vw;
+  margin-left: 1.4vw;
+  margin-bottom: 1.4vw;
+}
