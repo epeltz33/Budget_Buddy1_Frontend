@@ -1,0 +1,15 @@
+.AccountEdit input {
+  width: 11.7vw;
+}
+
+
+#AccountEditButtons {
+  display: flex;
+  position: relative;
+  left: 0.5em;
+}
+
+.AccountEdit form {
+  display: flex;
+  justify-content: space-around;
+}

@@ -1,0 +1,67 @@
+.AccountEdit button, .AccountDelete button {
+  background-color: transparent;
+  border: 0.1em solid transparent;
+  font-size: 12px;
+  color: #F2F2F2 !important;
+}
+
+.AccountEdit .submit-button-disabled {
+  /* border:0.1em solid #001219; */
+  color: #001219 !important;
+}
+
+.AccountEdit .cancel-button:hover, .AccountDeleteButton:hover, .AccountEditButton:hover {
+  border: 0.1em solid #001219;
+  background-color: #001219;
+}
+
+.AccountList h3 {
+  text-transform: uppercase;
+}
+
+.AccountList ul{
+  list-style: none;
+  padding-inline-start: 0.1em;
+}
+
+.AccountList li{
+  /* margin: 0.2em; */
+  margin-top: 0.5em;
+  font-size: 10px;
+  /* overflow: hidden; */
+  /* white-space: nowrap; */
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 0.2fr 3.2fr 0.3fr 0.3fr;
+  grid-template-rows: 1fr;
+  gap: 0.2em 0.2em;
+  grid-template-areas:
+    ". . . .";
+}
+
+.NewAccountButton {
+  font-size: 10px !important;
+  margin-bottom: 0.8em;
+  display:inline-block;
+  border:0.1em solid #F2F2F2;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #F2F2F2;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: inherit;
+  border-radius: 0.3em;
+}
+
+.NewAccountButton:hover {
+  border:0.1em solid #001219;
+  background-color: #001219;
+}
+
+.AccountEdit button, .AccountDelete button {
+  background-color: transparent;
+  border: 0.1em solid transparent;
+  font-size: 12px;
+  color: #F2F2F2 !important;
+}
