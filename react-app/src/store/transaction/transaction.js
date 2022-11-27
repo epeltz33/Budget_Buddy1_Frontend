@@ -95,10 +95,7 @@ const transactionReducer = (state = initialState, action) => {
         byId: { ...state.byId, [newTransaction.id]: newTransaction },
         all: [...state.all, newTransaction],
       };
-      // if (!newState.byId[newTransaction.id]) {
-      //   newState.byId[newTransaction.id] = newTransaction;
-      //   newState.all.push(newTransaction);
-      // };
+
       return newState;
     }
     case REMOVE_TRANSACTION: {
