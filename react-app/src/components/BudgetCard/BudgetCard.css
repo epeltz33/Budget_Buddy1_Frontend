@@ -1,0 +1,71 @@
+#EditBudgetsButton {
+  width: 40%;
+  font-size: 12px;
+  position: relative;
+  left: 20%;
+  padding: 0.5em;
+  display:inline-block;
+  border:0.1em solid #001219;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #001219;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: #FCFCFC;
+  border-radius: 0.3em;
+}
+
+#EditBudgetsButton:hover {
+  border:0.1em solid transparent;
+  background-color: #0A9396;
+  color: #F2F2F2;
+}
+
+.BudgetPieChart {
+  width: 20vw;
+}
+
+.BudgetCard {
+  background-color: #F2F2F2;
+  border-radius: 0.3em;
+  /* margin: 1em; */
+  margin: 1.4vw;
+  padding: 1em;
+  /* box-shadow: 10px 5px 5px #001219; */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  display: grid;
+  grid-auto-columns: 1fr;
+  grid-template-columns: 1fr 2.5fr;
+  grid-template-rows: 1.5fr 0.5fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "BudgetPieChart BudgetBarChart"
+    "BudgetPieText BudgetBarChart";
+}
+
+.BudgetPieChart { grid-area: BudgetPieChart; }
+.BudgetPieText { grid-area: BudgetPieText; }
+.BudgetBarChart { grid-area: BudgetBarChart; }
+
+.BudgetCard ul {
+  list-style-type: none;
+}
+
+.BudgetBarChart {
+  width: 55vw;
+}
+
+.BudgetCard li {
+  margin: 0.2em;
+  padding: 0.2em;
+}
+
+.BudgetPieText {
+  /* text-align: center; */
+  text-align: start;
+  /* position: relative; */ /* This is what was causing the text to be off-center I thinkk*/
+  /* right: 10%; */
+  margin-top: 1em;
+}

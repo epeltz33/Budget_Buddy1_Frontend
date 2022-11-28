@@ -2,12 +2,10 @@ import React from "react";
 import { useState } from "react";
 // import { useEffect } from 'react';
 import { useSelector } from "react-redux";
-// import { getBudgets } from '../../store/budget';
-// import { getTransactions } from '../../store/transaction';
 import BudgetPieChart from "../BudgetPieChart/BudgetPieChart";
 import BudgetBarChart from "../BudgetBarChart/BudgetBarChart";
 import BudgetList from "../BudgetList/BudgetList";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js"; // https://www.chartjs.org/docs/latest/getting-started/integration.html
 import { AnimatePresence } from "framer-motion";
 import "./BudgetCard.css";
 
@@ -34,7 +32,7 @@ export default function BudgetCard() {
         key="edit-budget-modal"
         initial={false}
         exitBeforeEnter={true}
-        onExitComplete={() => null}
+        onExitComplete={() => null} // set isEdit to false after animation is complete
       >
         {isEdit && (
           <BudgetList budgets={budgets} isEdit={isEdit} setIsEdit={setIsEdit} />
