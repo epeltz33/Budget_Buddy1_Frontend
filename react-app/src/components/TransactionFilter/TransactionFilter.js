@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import ReactDOM from "react-dom";
 import Backdrop from "../Backdrop/Backdrop";
@@ -17,7 +17,7 @@ export default function TransactionFilter({
   accounts,
   categories,
 }) {
-  const history = useHistory();
+  const history = useNavigate();
 
   const { setFilterQuery } = useFilter(); //  get the filter query from the context and set the filter query
 

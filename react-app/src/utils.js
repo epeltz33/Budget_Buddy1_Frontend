@@ -1,16 +1,16 @@
 export const currencyFormatter = new Intl.NumberFormat(undefined, {
-  style: "currency",
   currency: "usd",
-  minimumFractionDigits: 2, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-  maximumFractionDigits: 2, // (causes 2500.99 to be printed as $2,501)
+  style: "currency",
+  minimumFractionDigits: 2,
 });
 
 export const dateConverter = (str) => {
-  const new_str = new Date(str + "T00:00:00").toDateString();
-  return new_str.slice(4, 10) + new_str.slice(11); // remove day of week and year from date
+  const new_str = new Date(str + "T00:00").toDateString();
+  return new_str.slice(4, 10) + ", " + new_str.slice(11);
 };
 
-// Convert a string to a date, and then to a number that represents the number of days since January 1, 1970.
+// table to sort, index of column to sort for, boolean if asc or desc order
+
 export const tableSorter = (table, column, asc = true) => {
   const dir = asc ? 1 : -1;
   const tBody = table.tBodies[0];

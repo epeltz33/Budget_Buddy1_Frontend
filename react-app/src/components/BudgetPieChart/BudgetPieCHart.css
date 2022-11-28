@@ -1,0 +1,25 @@
+.OverbudgetText li {
+  color: red !important;
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center !important;
+  line-height: 1em;
+}
+
+.OverbudgetText {
+  position: relative;
+  right: 2.5em;
+}
+
+.OverbudgetImage img {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.OverbudgetImage {
+  margin-right: 0.3em;
+  padding-right: 0.3em;
+  margin-bottom: 0.2em;
+  padding-bottom: 0.2em;
+}

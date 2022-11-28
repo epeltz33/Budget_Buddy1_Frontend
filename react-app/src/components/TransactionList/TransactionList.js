@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { currencyFormatter, dateConverter, tableSorter } from "../../utils";
 import { useFilter } from "../../context/FilterContext";
@@ -8,7 +8,7 @@ import TransactionEdit from "../TransactionEdit/TransactionEdit";
 import "./TransactionList.css";
 
 const TransactionList = ({ transactions, title }) => {
-  const history = useHistory();
+  const history = useNavigate();
 
   const { filterQuery } = useFilter();
 

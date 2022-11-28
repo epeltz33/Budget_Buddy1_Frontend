@@ -5,6 +5,7 @@ import LoginForm from "./components/auth/LoginForm";
 import { authenticate } from "./store/session";
 import NavBar from "./components/NavBar/Navbar";
 import SignUpForm from "./components/auth/SignUpForm";
+import Splash from "./components/Splash/Splash";
 import Footer from "./components/Footer/Footer";
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -12,7 +13,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      dispatch(authenticate());
+      await dispatch(authenticate());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -25,10 +26,17 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/sign-up" element={<SignUpForm />} />
-        <Route path="/" element={<Footer />} />
+        <Route path="/login">
+          <LoginForm />
+        </Route>
+        <Route path="/sign-up">
+          <SignUpForm />
+        </Route>
+        <Route path="/">
+          <Splash />
+        </Route>
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
