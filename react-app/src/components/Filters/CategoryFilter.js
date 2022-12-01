@@ -1,8 +1,8 @@
 import React from "react";
 import TransactionList from "../TransactionList/TransactionList";
 import { useSelector } from "react-redux";
-import { selectTransactionsByCategory } from "../../store/transactions/selectors";
-import { selectCategoryNameById } from "../../store/categories/selectors";
+import { selectTransactionsByCategory } from "../../store/transaction/selectors";
+import { selectCategoryNameById } from "../../store/category/selectors";
 
 const CategoryFilter = ({ filterQuery }) => {
   const transactionsByCategory = useSelector((state) =>

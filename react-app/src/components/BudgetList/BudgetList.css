@@ -1,0 +1,49 @@
+.BudgetList {
+  z-index: 1000;
+  /* position: fixed;
+  top: 20%;
+  left: 35%;
+  transform: translate(-50%, -50%); */
+  background-color: rgba(244, 107, 23, 0.8);
+  color: white;
+  padding: 3vh;
+  border-radius: 0.3em;
+}
+
+.BudgetList ul {
+  list-style-type: none;
+}
+
+.BudgetList li {
+  margin: 0.2em;
+}
+
+/* .BudgetListOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .7);
+  z-index: 1000;
+} */
+
+#BudgetEditCloseButton {
+  position: relative;
+  left: 38%;
+  display:inline-block;
+  border:0.1em solid #F2F2F2;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  color: #F2F2F2;
+  text-align: center;
+  transition: all 0.2s;
+  background-color: inherit;
+  border-radius: 0.3em;
+}
+
+#BudgetEditCloseButton:hover {
+  border:0.1em solid #001219;
+  background-color: #001219;
+}

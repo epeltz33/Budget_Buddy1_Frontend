@@ -1,6 +1,5 @@
 import React from "react";
 import { useState } from "react";
-// import { useEffect } from 'react';
 import { useSelector } from "react-redux";
 import BudgetPieChart from "../BudgetPieChart/BudgetPieChart";
 import BudgetBarChart from "../BudgetBarChart/BudgetBarChart";
@@ -13,8 +12,6 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 export default function BudgetCard() {
   const [isEdit, setIsEdit] = useState(false);
-
-  // const dispatch = useDispatch();
 
   const budgets = useSelector((state) => state.budget.all);
   const transactions = useSelector((state) => state.transaction.all);

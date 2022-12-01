@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import LoginForm from "./components/auth/LoginForm";
-import { authenticate } from "./store/session";
 import NavBar from "./components/NavBar/Navbar";
 import SignUpForm from "./components/auth/SignUpForm";
 import Splash from "./components/Splash/Splash";
 import Footer from "./components/Footer/Footer";
+import { authenticate } from "./store/session";
+
 function App() {
-  const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  const [loaded, setLoaded] = useState(false); // this is a boolean that will be set to true when the app is loaded
 
   useEffect(() => {
     (async () => {
@@ -26,15 +28,9 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Routes>
-        <Route path="/login">
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up">
-          <SignUpForm />
-        </Route>
-        <Route path="/">
-          <Splash />
-        </Route>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/sign-up" element={<SignUpForm />} />
+        <Route path="/" element={<Splash />} />
       </Routes>
       <Footer />
     </BrowserRouter>

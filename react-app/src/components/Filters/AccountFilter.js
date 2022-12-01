@@ -1,8 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import TransactionList from "../TransactionList/TransactionList";
-import { selectTransactionsByAccount } from "../../store/transactions/selectors";
-import { selectAccountNameById } from "../../store/accounts/selectors";
+import { selectTransactionsByAccount } from "../../store/transaction/selectors";
+import { selectAccountNameById } from "../../store/account/selectors";
 
 const AccountFilter = ({ filterQuery }) => {
   const transactionsByAccount = useSelector((state) =>

@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { currencyFormatter, dateConverter } from "../../utils";
 import TransactionEdit from "../TransactionEdit/TransactionEdit";
-import "/TransactionCard.css";
+import "./TransactionCard.css";
 
 export default function TransactionCard() {
-  const dispatch = useDispatch();
   const transactions = useSelector((state) => state.transactions.all);
   const categories = useSelector((state) => state.category);
   const accounts = useSelector((state) => state.account.byId);
