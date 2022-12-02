@@ -21,7 +21,7 @@ const update = (transaction) => {
 };
 
 export const getTransactions = () => async (dispatch) => {
-  const response = await fetch("/api/transactions/");
+  const response = await fetch("http://127.0.0.1:5000/api/transactions/");
 
   if (response.ok) {
     const transactions = await response.json();
@@ -31,7 +31,7 @@ export const getTransactions = () => async (dispatch) => {
 };
 
 export const createTransaction = (newTransaction) => async (dispatch) => {
-  const response = await fetch(`/api/transactions/`, {
+  const response = await fetch(`http://127.0.0.1:5000/api/transactions/`, {
     method: "post",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newTransaction),
@@ -45,9 +45,12 @@ export const createTransaction = (newTransaction) => async (dispatch) => {
 };
 
 export const deleteTransaction = (oldTransaction) => async (dispatch) => {
-  const response = await fetch(`/api/transactions/${oldTransaction.id}`, {
-    method: "delete",
-  });
+  const response = await fetch(
+    `http://127.0.0.1:5000/api/transactions/${oldTransaction.id}`,
+    {
+      method: "delete",
+    }
+  );
 
   if (response.ok) {
     const transaction = await response.json();
@@ -56,13 +59,16 @@ export const deleteTransaction = (oldTransaction) => async (dispatch) => {
 };
 
 export const updateTransaction = (data) => async (dispatch) => {
-  const response = await fetch(`/api/transactions/${data.id}`, {
-    method: "put",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  const response = await fetch(
+    `http://127.0.0.1:5000/api/transactions/${data.id}`,
+    {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   if (response.ok) {
     const transaction = await response.json();

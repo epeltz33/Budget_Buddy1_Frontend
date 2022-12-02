@@ -1,8 +1,8 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import LogoutButton from '../auth/LogoutButton';
-import './NavBar.css';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+import LogoutButton from "../auth/LogoutButton";
+import "./NavBar.css";
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -52,7 +52,7 @@ const NavBar = () => {
         <li>
           <NavLink to="/login">
             <button>
-              Login <i class="fa-solid fa-right-to-bracket" />
+              Login <i className="fa-solid fa-right-to-bracket" />
             </button>
           </NavLink>
         </li>
@@ -60,7 +60,7 @@ const NavBar = () => {
         <li>
           <NavLink to="/sign-up">
             <button>
-              Sign Up <i class="fa-solid fa-user-plus" />
+              Sign Up <i className="fa-solid fa-user-plus" />
             </button>
           </NavLink>
         </li>
@@ -70,4 +70,3 @@ const NavBar = () => {
 };
 
 export default NavBar;
-  

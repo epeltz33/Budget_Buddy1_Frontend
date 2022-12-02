@@ -14,7 +14,7 @@ const removeUser = () => ({
 const initialState = { user: null };
 
 export const authenticate = () => async (dispatch) => {
-  const response = await fetch("/api/auth/", {
+  const response = await fetch("http://127.0.0.1:5000/api/auth/", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -30,7 +30,7 @@ export const authenticate = () => async (dispatch) => {
 };
 
 export const login = (email, password) => async (dispatch) => {
-  const response = await fetch("/api/auth/login", {
+  const response = await fetch("http://127.0.0.1:5000/api/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -43,6 +43,7 @@ export const login = (email, password) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+    console.log(data);
     dispatch(setUser(data));
     return null;
   } else if (response.status < 500) {
@@ -56,7 +57,7 @@ export const login = (email, password) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  const response = await fetch("/api/auth/logout", {
+  const response = await fetch("http://127.0.0.1:5000/api/auth/logout", {
     headers: {
       "Content-Type": "application/json",
     },
@@ -68,7 +69,7 @@ export const logout = () => async (dispatch) => {
 };
 
 export const signUp = (username, email, password) => async (dispatch) => {
-  const response = await fetch("/api/auth/signup", {
+  const response = await fetch("http://127.0.0.1:5000/api/auth/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

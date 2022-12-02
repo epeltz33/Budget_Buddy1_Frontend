@@ -6,7 +6,7 @@ import TransactionEdit from "../TransactionEdit/TransactionEdit";
 import "./TransactionCard.css";
 
 export default function TransactionCard() {
-  const transactions = useSelector((state) => state.transactions.all);
+  const transactions = useSelector((state) => state.transactions?.all || []);
   const categories = useSelector((state) => state.category);
   const accounts = useSelector((state) => state.account.byId);
 

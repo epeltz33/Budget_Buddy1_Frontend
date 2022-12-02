@@ -87,7 +87,7 @@ const SidePanel = () => {
       <span id={"SideMax"}>
         <button onClick={toggleMax}>
           <i
-            class={
+            className={
               isMax
                 ? "fa-solid fa-window-minimize"
                 : "fa-solid fa-window-maximize"
@@ -99,7 +99,7 @@ const SidePanel = () => {
       <div className="Transactions">
         <h3>Transactions</h3>
         <button className="NewTransactionButton" onClick={toggleAdd}>
-          <i class="fa-solid fa-square-plus" /> Add
+          <i className="fa-solid fa-square-plus" /> Add
         </button>
         <AnimatePresence
           key="new-transaction-modal" // this is a key that is used to make sure that the modal is only rendered when the user clicks the add transaction button
@@ -121,7 +121,7 @@ const SidePanel = () => {
             <NavLink to="/transactions">All</NavLink>
           </li>
           <li style={{ cursor: "pointer" }} onClick={filterShowClick}>
-            <i class="fa-solid fa-money-bill-wave" /> Filter
+            <i className="fa-solid fa-money-bill-wave" /> Filter
             <ul className={filterStyle}>
               <li>
                 <i className="fa-solid fa-filter" />{" "}

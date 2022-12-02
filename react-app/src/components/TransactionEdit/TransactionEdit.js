@@ -77,7 +77,7 @@ export default function TransactionEdit({
             <div className="editButtons">
               <span>
                 <button onClick={toggleEdit}>
-                  <i class="fa-solid fa-pen-to-square" />
+                  <i className="fa-solid fa-pen-to-square" />
                 </button>
               </span>
               <span>
@@ -155,12 +155,12 @@ export default function TransactionEdit({
             <div className="saveButtons">
               <span>
                 <button className="submit-button" type="submit" form="Edit">
-                  <i class="fa-solid fa-floppy-disk" />
+                  <i className="fa-solid fa-floppy-disk" />
                 </button>
               </span>
               <span>
                 <button className="cancel-button" type="reset" onClick={reset}>
-                  <i class="fa-solid fa-square-xmark" />
+                  <i className="fa-solid fa-square-xmark" />
                 </button>
               </span>
             </div>

@@ -20,7 +20,7 @@ const update = (account) => {
 };
 
 export const getAccounts = () => async (dispatch) => {
-  const response = await fetch("/api/accounts/");
+  const response = await fetch("http://127.0.0.1:5000/api/accounts/");
 
   if (response.ok) {
     const accounts = await response.json();
@@ -30,7 +30,7 @@ export const getAccounts = () => async (dispatch) => {
 };
 
 export const createAccount = (newAccount) => async (dispatch) => {
-  const response = await fetch(`/api/accounts/`, {
+  const response = await fetch(`http://127.0.0.1:5000/api/accounts/`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newAccount),
@@ -44,9 +44,12 @@ export const createAccount = (newAccount) => async (dispatch) => {
 };
 
 export const deleteAccount = (oldAccount) => async (dispatch) => {
-  const response = await fetch(`/api/accounts/${oldAccount.id}`, {
-    method: "DELETE",
-  });
+  const response = await fetch(
+    `http://127.0.0.1:5000/api/accounts/${oldAccount.id}`,
+    {
+      method: "DELETE",
+    }
+  );
 
   if (response.ok) {
     const account = await response.json();
@@ -55,13 +58,16 @@ export const deleteAccount = (oldAccount) => async (dispatch) => {
 };
 
 export const updateAccount = (data) => async (dispatch) => {
-  const response = await fetch(`/api/accounts/${data.id}`, {
-    method: "put",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
+  const response = await fetch(
+    `http://127.0.0.1:5000/api/accounts/${data.id}`,
+    {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    }
+  );
 
   if (response.ok) {
     const account = await response.json();

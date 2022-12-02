@@ -51,7 +51,7 @@ export default function AccountEdit({ setEditId, editId, account, accounts }) {
           <span id="AccountEditButtons">
             {name ? (
               <button className="submit-button-active" type="submit">
-                <i class="fa-solid fa-floppy-disk" />
+                <i className="fa-solid fa-floppy-disk" />
               </button>
             ) : (
               <button
@@ -59,17 +59,17 @@ export default function AccountEdit({ setEditId, editId, account, accounts }) {
                 type="submit"
                 disabled="disabled"
               >
-                <i class="fa-solid fa-floppy-disk" />
+                <i className="fa-solid fa-floppy-disk" />
               </button>
             )}
             <button className="cancel-button" type="reset" onClick={reset}>
-              <i class="fa-solid fa-square-xmark" />
+              <i className="fa-solid fa-square-xmark" />
             </button>
           </span>
         </form>
       ) : (
         <button className="AccountEditButton" onClick={toggleEdit}>
-          <i class="fa-solid fa-pen-to-square" />
+          <i className="fa-solid fa-pen-to-square" />
         </button>
       )}
     </div>

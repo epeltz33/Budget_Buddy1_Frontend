@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Router } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useFilter } from "../../context/FilterContext";
 import AccountFilter from "../Filters/AccountFilter";
@@ -14,33 +14,46 @@ import "./MainPanel.css";
 
 const MainPanel = () => {
   const { filterQuery } = useFilter(); // Get the filter query from the context provider
-  const transactions = useSelector((state) => state.transactions.all); // Get the transactions from the store
-
+  const transactions = useSelector((state) => state.transactions); // Get the transactions from the store
   return (
     <div className="MainPanel">
-      <Router>
-        <Route exact path="/transactions">
-          <TransactionList transactions={transactions} title={"Transactions"} />
-        </Route>
-        <Route path="/transactions/category/">
-          <CategoryFilter filterQuery={filterQuery} />
-        </Route>
-        <Route path="/transactions/account/">
-          <AccountFilter filterQuery={filterQuery} />
-        </Route>
-        <Route path="/transactions/date/">
-          <DateFilter filterQuery={filterQuery} />
-        </Route>
-        <Route path="/transactions/payee/">
-          {/*  <PayeeFilter filterQuery={filterQuery}/> */}
-          <PayeeFilter filterQuery={filterQuery} />
-        </Route>
-        <Route path="/">
-          <BudgetCard />
-          <TransactionCard />
-          <CategoryCard />
-        </Route>
-      </Router>
+      <Routes>
+        <Route
+          exact
+          path="/transactions"
+          element={
+            <TransactionList
+              transactions={transactions}
+              title={"Transactions"}
+            />
+          }
+        />
+        <Route
+          path="/transactions/category/"
+          element={<CategoryFilter transactions={transactions} />}
+        />
+        <Route
+          path="/transactions/account/"
+          element={<AccountFilter transactions={transactions} />}
+        />
+        <Route
+          path="/transactions/date/"
+          element={<DateFilter transactions={transactions} />}
+        />
+        <Route
+          path="/transactions/payee/"
+          element={<PayeeFilter transactions={transactions} />}
+        />
+        <Route
+          path="/"
+          element={
+            <>
+              <BudgetCard />
+              <TransactionCard />
+            </>
+          }
+        />
+      </Routes>
     </div>
   );
 };

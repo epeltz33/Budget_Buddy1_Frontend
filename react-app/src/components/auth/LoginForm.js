@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../store/session";
 import { useSelector, useDispatch } from "react-redux";
@@ -25,62 +25,56 @@ const LoginForm = () => {
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
-  if (user) {
-    return navigate("/");
-  }
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [navigate, user]);
 
   return (
-    <div className="LoginForm scale-up-center">
-      {errors.length > 0 && (
-        <div className="LoginErrors">
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+    <form onSubmit={onLogin}>
+      <div className="LoginInputs">
+        <div className="LoginEmail">
+          {/* <label htmlFor='email' id='LoginEmailLabel'>Email</label> */}
+          <input
+            name="email"
+            type="text"
+            value={email}
+            onChange={updateEmail}
+            id="LoginEmailInput"
+            placeholder="Email"
+          />
         </div>
-      )}
-      <form onSubmit={onLogin}>
-        <div className="LoginInputs">
-          <div className="LoginEmail">
-            {/* <label htmlFor='email' id='LoginEmailLabel'>Email</label> */}
-            <input
-              name="email"
-              type="text"
-              value={email}
-              onChange={updateEmail}
-              id="LoginEmailInput"
-              placeholder="Email"
-            />
-          </div>
-          <div className="LoginPassword">
-            {/* <label htmlFor='password' id='LoginPasswordLabel'>Password</label> */}
-            <input
-              name="password"
-              type="password"
-              value={password}
-              onChange={updatePassword}
-              id="LoginPasswordInput"
-              placeholder="Password"
-            />
-          </div>
+        <div className="LoginPassword">
+          {/* <label htmlFor='password' id='LoginPasswordLabel'>Password</label> */}
+          <input
+            name="password"
+            type="password"
+            value={password}
+            onChange={updatePassword}
+            id="LoginPasswordInput"
+            placeholder="Password"
+          />
         </div>
-        <div id="LoginButtons">
-          <span className="LoginButton">
-            <button type="submit">Login</button>
-          </span>
-          <span className="DemoButton">
-            <button
-              type="submit"
-              onClick={() => {
-                setEmail("demo@aa.io");
-                setPassword("password");
-              }}
-            >
-              Demo
-            </button>
-          </span>
-        </div>
-      </form>
-    </div>
+      </div>
+      <div id="LoginButtons">
+        <span className="LoginButton">
+          <button type="submit">Login</button>
+        </span>
+        <span className="DemoButton">
+          <button
+            type="submit"
+            onClick={() => {
+              setEmail("demo@aa.io");
+              setPassword("password");
+            }}
+          >
+            Demo
+          </button>
+        </span>
+      </div>
+    </form>
   );
 };
 
