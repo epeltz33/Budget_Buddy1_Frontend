@@ -20,9 +20,10 @@ function App() {
     })();
   }, [dispatch]);
 
-  if (!loaded) {
-    return null;
-  }
+  //if (!loaded) {
+  // if the app is not loaded, return null
+  //return null;
+  //}
 
   return (
     <BrowserRouter>

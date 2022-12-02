@@ -1,32 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
+function User() {
+  const [user, setUser] = useState({});
+  const { userId } = useParams();
 
-const User = () => {
-    const { userId } = useParams();
-    const [user, setUser] = useState({}); // <--- this is the state variable that will hold the user data
+  useEffect(() => {
+    if (!userId) {
+      return;
+    }
+    (async () => {
+      const response = await fetch(`/api/users/${userId}`);
+      const user = await response.json();
+      setUser(user);
+    })();
+  }, [userId]);
 
-    useEffect(() => {
-        (async () => {
-            const response = await fetch(`/api/users/${userId}`);
-            const user = await response.json();
-            setUser(user);
-        })(); // <--- this is the function that will be called when the component is mounted
-    }, [userId]); // <--- this is the dependency array that will trigger the function to be called again if the userId changes
+  if (!user) {
+    return null;
+  }
 
-    return (
-        <ul>
-            <li>
-                <strong>User Id:</strong> {userId}
-            </li>
-            <li>
-                <strong>Username:</strong> {user.username}
-            </li>
-            <li>
-                <strong>Email:</strong> {user.email}
-            </li>
-        </ul>
-    );
-};
-
+  return (
+    <ul>
+      <li>
+        <strong>User Id</strong> {userId}
+      </li>
+      <li>
+        <strong>Username</strong> {user.username}
+      </li>
+      <li>
+        <strong>Email</strong> {user.email}
+      </li>
+    </ul>
+  );
+}
 export default User;

@@ -31,7 +31,7 @@ export const getAccounts = () => async (dispatch) => {
 
 export const createAccount = (newAccount) => async (dispatch) => {
   const response = await fetch(`/api/accounts/`, {
-    method: "post",
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newAccount),
   });
@@ -45,7 +45,7 @@ export const createAccount = (newAccount) => async (dispatch) => {
 
 export const deleteAccount = (oldAccount) => async (dispatch) => {
   const response = await fetch(`/api/accounts/${oldAccount.id}`, {
-    method: "delete",
+    method: "DELETE",
   });
 
   if (response.ok) {

@@ -1,17 +1,15 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
-export const FilterContext = createContext(); // context that will be used to pass the filter state to the components
+export const FilterContext = createContext();
 
-export const useFilter = () => useContext( FilterContext ); // this is the hook that will be used to access the filter state
+export const useFilter = () => useContext(FilterContext);
 
 export default function FilterProvider({ children }) {
   const [filterQuery, setFilterQuery] = useState();
 
   return (
-    <FilterContext.Provider
-      value={{ filterQuery, setFilterQuery }}
-    >
+    <FilterContext.Provider value={{ filterQuery, setFilterQuery }}>
       {children}
     </FilterContext.Provider>
   );
-};
+}
