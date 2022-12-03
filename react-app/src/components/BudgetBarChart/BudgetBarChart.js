@@ -3,7 +3,7 @@ import { Card, ProgressBar } from "react-bootstrap";
 import { currencyFormatter } from "../../utils";
 import "./BudgetBarChart.css";
 
-export default function BudgetBarChart({ budget, transactions, today }) {
+export default function BudgetBarChart({ budgets, transactions, today }) {
   const spend_monthly_byCat = {};
 
   const transactions_monthly = transactions.filter(
@@ -24,14 +24,14 @@ export default function BudgetBarChart({ budget, transactions, today }) {
     }
   });
 
-  if (!budget.length || !transactions.length) {
+  if (!budgets.length || !transactions.length) {
     return null;
   }
 
   return (
     <span className="BudgetBarChart">
       <h4>Category Budget</h4>
-      {budget
+      {budgets
         .filter((budget) => budget.categoryId !== 1)
         .map((budget) => getCard(budget, spend_monthly_byCat))}
     </span>

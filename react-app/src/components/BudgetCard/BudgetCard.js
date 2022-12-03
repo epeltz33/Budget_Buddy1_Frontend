@@ -13,7 +13,10 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 export default function BudgetCard() {
   const [isEdit, setIsEdit] = useState(false);
 
-  const budgets = useSelector((state) => state.budget.all);
+  const budgets = useSelector((state) => {
+    console.log(state, "<==========<<<<");
+    return state.budget.all;
+  });
   const transactions = useSelector((state) => state.transaction.all);
 
   const today = new Date();
@@ -21,7 +24,7 @@ export default function BudgetCard() {
     new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate() -
     today.getDate();
 
-  if (!budgets.length || !transactions.length) return null; // no need to render if there are no budgets or transactions
+  if (!budgets?.length || !transactions?.length) return null; // no need to render if there are no budgets or transactions
 
   return (
     <div className="BudgetCard">

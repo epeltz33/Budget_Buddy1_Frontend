@@ -56,10 +56,11 @@ const budgetReducer = (state = initialState, action) => {
       return newState;
     }
     case load_budgets: {
-      const newState = { byId: {}, allIds: [] };
-      action.budgets.forEach((budget) => {
+      const newState = { byId: {}, allIds: [], all: [] };
+      action.budgets.all_budgets.forEach((budget) => {
         newState.byId[budget.id] = budget;
         newState.allIds.push(budget.id);
+        newState.all.push(budget);
       });
       return newState;
     }
