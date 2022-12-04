@@ -14,12 +14,13 @@ import "./MainPanel.css";
 
 const MainPanel = () => {
   const { filterQuery } = useFilter(); // Get the filter query from the context provider
-  const transactions = useSelector((state) => state.transactions); // Get the transactions from the store
+  const transactions = useSelector((state) => state.transaction?.all || []); // Get the transactions from the store
+  console.log("test");
   return (
     <div className="MainPanel">
       <Routes>
         <Route
-          exact
+          //exact
           path="/transactions"
           element={
             <TransactionList

@@ -31,7 +31,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<LoginForm />} />
         <Route path="/sign-up" element={<SignUpForm />} />
-        <Route path="/" element={<Splash />} />
+        <Route path="*" element={<Splash />} />
       </Routes>
       <Footer />
     </BrowserRouter>

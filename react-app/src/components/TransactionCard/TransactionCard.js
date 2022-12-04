@@ -6,16 +6,18 @@ import TransactionEdit from "../TransactionEdit/TransactionEdit";
 import "./TransactionCard.css";
 
 export default function TransactionCard() {
-  const transactions = useSelector((state) => state.transactions?.all || []);
+  const transactions = useSelector((state) => state.transaction?.all || []);
   const categories = useSelector((state) => state.category);
   const accounts = useSelector((state) => state.account.byId);
+
+  console.log("transactions", transactions);
+
+  const today = new Date();
 
   const transactions_monthly = transactions.filter(
     (transaction) =>
       parseInt(transaction.trans_date.slice(5, 7)) === today.getMonth() + 1
   );
-
-  const today = new Date();
 
   const [editId, setEditId] = useState();
 

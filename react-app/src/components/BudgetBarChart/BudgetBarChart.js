@@ -57,7 +57,7 @@ function getVariant(now, max) {
 function getCard(budget, spend_monthly_byCat) {
   if (spend_monthly_byCat[budget.categoryId] > budget.budget_amount) {
     return (
-      <Card className="mb-3 bg-danger bg-opacity-10">
+      <Card key={budget.id} className="mb-3 bg-danger bg-opacity-10">
         <Card.Body>
           <Card.Title className="d-flex justify-content-between">
             <div>{budget.budget_name}</div>
@@ -87,7 +87,7 @@ function getCard(budget, spend_monthly_byCat) {
     );
   } else {
     return (
-      <Card className="mb-3">
+      <Card key={budget.id} className="mb-3">
         <Card.Body>
           <Card.Title className="d-flex justify-content-between">
             <div>{budget.budget_name}</div>

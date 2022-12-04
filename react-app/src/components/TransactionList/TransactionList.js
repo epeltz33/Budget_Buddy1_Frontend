@@ -23,9 +23,9 @@ const TransactionList = ({ transactions, title }) => {
   }, []);
 
   useEffect(() => {
-    return history.listen(() => {
+    /* return history.listen(() => {
       removeSortClass();
-    });
+    });*/
   }, [history]);
 
   useEffect(() => {

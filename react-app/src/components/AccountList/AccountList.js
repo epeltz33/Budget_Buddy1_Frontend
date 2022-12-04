@@ -14,8 +14,9 @@ export default function AccountList({ isMax }) {
   const [editId, setEditId] = useState();
 
   const toggleAdd = (e) => {
+    console.log(`toggle`);
     e.preventDefault();
-    setIsAdd(!isAdd);
+    //setIsAdd(!isAdd);
     setEditId();
   };
 

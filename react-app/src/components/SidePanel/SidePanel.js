@@ -40,6 +40,7 @@ const SidePanel = () => {
   };
 
   const toggleAdd = (e) => {
+    console.log("test");
     // toggle add transaction modal
     e.stopPropagation();
     if (!accounts.length)

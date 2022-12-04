@@ -134,7 +134,9 @@ export default function TransactionEdit({
               {Object.values(categories)
                 .slice(1)
                 .map((category) => (
-                  <option value={category.id}>{category.category_name}</option>
+                  <option key={category.id} value={category.id}>
+                    {category.category_name}
+                  </option>
                 ))}
             </select>
           </td>
@@ -147,7 +149,9 @@ export default function TransactionEdit({
               id="AccountSelect"
             >
               {Object.values(accounts).map((account) => (
-                <option value={account.id}>{account.account_name}</option>
+                <option key={account.id} value={account.id}>
+                  {account.account_name}
+                </option>
               ))}
             </select>
           </td>
