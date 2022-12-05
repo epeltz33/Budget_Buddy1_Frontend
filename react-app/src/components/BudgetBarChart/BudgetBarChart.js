@@ -4,17 +4,13 @@ import { currencyFormatter } from "../../utils";
 import "./BudgetBarChart.css";
 
 export default function BudgetBarChart({ budgets, transactions, today }) {
-  const spend_monthly_byCat = {};
-
+  // const transactions_monthly = transactions.filter(transaction => new Date(transaction.trans_date).getMonth() === today.getMonth());
   const transactions_monthly = transactions.filter(
     (transaction) =>
       parseInt(transaction.trans_date.slice(5, 7)) === today.getMonth() + 1
   );
 
-  //This code is used to categorize the transaction by category and the total amount spent in the category
-  //spend_monthly_byCat is an object that contains the category as the key and the amount spent in the category as the value
-  //transactions_monthly is an array of objects that contains the category, amount spent and date of the transaction
-  //transaction is a single object that contains the category, amount spent and date of the transactions
+  const spend_monthly_byCat = {};
 
   transactions_monthly.forEach((transaction) => {
     if (spend_monthly_byCat[transaction.categoryId]) {
@@ -38,15 +34,6 @@ export default function BudgetBarChart({ budgets, transactions, today }) {
   );
 }
 
-// This is a function that returns a string based on the ratio of the now and max values.
-// The function is called getVariant.
-// The function takes two parameters, now and max.
-// The function returns a string.
-// The returned string is either "primary", "warning", or "danger".
-// If the ratio of the now and max values is less than 0.5, the returned string will be "primary".
-// If the ratio of the now and max values is less than 0.75, the returned string will be "warning".
-// If the ratio of the now and max values is less than 1, the returned string will be "danger".
-
 function getVariant(now, max) {
   const ratio = now / max;
   if (ratio < 0.5) return "primary";
@@ -57,7 +44,7 @@ function getVariant(now, max) {
 function getCard(budget, spend_monthly_byCat) {
   if (spend_monthly_byCat[budget.categoryId] > budget.budget_amount) {
     return (
-      <Card key={budget.id} className="mb-3 bg-danger bg-opacity-10">
+      <Card className="mb-3 bg-danger bg-opacity-10">
         <Card.Body>
           <Card.Title className="d-flex justify-content-between">
             <div>{budget.budget_name}</div>
@@ -70,7 +57,7 @@ function getCard(budget, spend_monthly_byCat) {
         <ProgressBar
           className="rounded-pill m-3"
           variant={getVariant(
-            spend_monthly_byCat[budget.categoryId],
+            spend_monthly_byCat[budget.categoryId], // this is the amount spent so far
             budget.budget_amount
           )}
           min={0}
@@ -87,7 +74,7 @@ function getCard(budget, spend_monthly_byCat) {
     );
   } else {
     return (
-      <Card key={budget.id} className="mb-3">
+      <Card className="mb-3">
         <Card.Body>
           <Card.Title className="d-flex justify-content-between">
             <div>{budget.budget_name}</div>

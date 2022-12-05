@@ -1,9 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { useState, useMemo } from "react";
-import AccountEdit from "../AccountEdit/AccountEdit";
+import { useSelector } from "react-redux";
 import AccountAdd from "../AccountAdd/AccountAdd";
 import AccountDelete from "../AccountDelete/AccountDelete";
+import AccountEdit from "../AccountEdit/AccountEdit";
 import { AnimatePresence } from "framer-motion";
 import "./AccountList.css";
 
@@ -14,9 +14,8 @@ export default function AccountList({ isMax }) {
   const [editId, setEditId] = useState();
 
   const toggleAdd = (e) => {
-    console.log(`toggle`);
     e.preventDefault();
-    //setIsAdd(!isAdd);
+    setIsAdd(!isAdd);
     setEditId();
   };
 

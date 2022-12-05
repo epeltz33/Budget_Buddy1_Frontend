@@ -11,8 +11,7 @@ import { authenticate } from "./store/session";
 function App() {
   const dispatch = useDispatch();
 
-  const [loaded, setLoaded] = useState(false); // this is a boolean that will be set to true when the app is loaded
-
+  const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
@@ -21,7 +20,6 @@ function App() {
   }, [dispatch]);
 
   //if (!loaded) {
-  // if the app is not loaded, return null
   //return null;
   //}
 

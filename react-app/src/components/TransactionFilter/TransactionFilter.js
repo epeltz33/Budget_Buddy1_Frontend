@@ -17,6 +17,12 @@ export default function TransactionFilter({
   accounts,
   categories,
 }) {
+  const setNavigate = (navigate) => {
+    setIsFilter(true);
+    setIsFilter(false);
+    navigate(filterType);
+  };
+
   const history = useNavigate();
 
   const { setFilterQuery } = useFilter(); //  get the filter query from the context and set the filter query
@@ -42,14 +48,19 @@ export default function TransactionFilter({
     e.preventDefault();
     setFilterQuery(categoryId);
     reset();
-    history.push("/transactions/category");
+    setCategoryId(categoryId + 1);
+    //history("/transactions");
+    // refactor history to use navigate
+    setNavigate("/transactions");
   };
 
   const filterAccClick = (e) => {
     e.preventDefault();
     setFilterQuery(accountId);
     reset();
-    history.push("/transactions/account");
+    //history.push("/transactions/account");
+    // refactor history to use navigate
+    setNavigate("/transactions/account");
   };
 
   const filterDateClick = (e) => {
@@ -77,7 +88,7 @@ export default function TransactionFilter({
     e.preventDefault();
     setFilterQuery(payeeQuery);
     reset();
-    history.push("/transactions/payee");
+    setNavigate("/transactions/payee"); // setNavigate is a function that sets the filter query and then navigates to the transactions page
   };
 
   const onChange = (dates) => {

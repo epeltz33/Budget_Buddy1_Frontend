@@ -1,7 +1,7 @@
-const LOAD_ACCOUNTS = "account/LOAD_ACCOUNT";
+const LOAD_ACCOUNTS = "accounts/LOAD_ACCOUNTS";
+const ADD_ACCOUNT = "accounts/ADD_ACCOUNT";
 const REMOVE_ACCOUNT = "accounts/REMOVE_ACCOUNT";
 const UPDATE_ACCOUNT = "accounts/UPDATE_ACCOUNT";
-const ADD_ACCOUNT = "accounts/ADD_ACCOUNT";
 
 const load = (accounts) => {
   return { type: LOAD_ACCOUNTS, accounts };
@@ -20,36 +20,34 @@ const update = (account) => {
 };
 
 export const getAccounts = () => async (dispatch) => {
-  const response = await fetch("http://127.0.0.1:5000/api/accounts/");
+  const response = await fetch("http://127.0.0.1:5000/api/accounts", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const accounts = await response.json();
+  dispatch(load(accounts.all_accounts || {})); // if accounts is null, set to empty object
 
-  if (response.ok) {
-    const accounts = await response.json();
-    dispatch(load(accounts.all_accounts));
-    return accounts;
-  }
+  return accounts;
 };
 
 export const createAccount = (newAccount) => async (dispatch) => {
-  const response = await fetch(`http://127.0.0.1:5000/api/accounts/`, {
+  const response = await fetch("http://127.0.0.1:5000/api/accounts", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(newAccount),
   });
   const account = await response.json();
-
-  if (response.ok) {
-    dispatch(add(account));
-    return account;
-  }
+  dispatch(add(account));
+  return account;
 };
 
 export const deleteAccount = (oldAccount) => async (dispatch) => {
-  const response = await fetch(
-    `http://127.0.0.1:5000/api/accounts/${oldAccount.id}`,
-    {
-      method: "DELETE",
-    }
-  );
+  const response = await fetch(`/api/accounts/${oldAccount.id}`, {
+    method: "delete",
+  });
 
   if (response.ok) {
     const account = await response.json();
@@ -58,16 +56,13 @@ export const deleteAccount = (oldAccount) => async (dispatch) => {
 };
 
 export const updateAccount = (data) => async (dispatch) => {
-  const response = await fetch(
-    `http://127.0.0.1:5000/api/accounts/${data.id}`,
-    {
-      method: "put",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    }
-  );
+  const response = await fetch(`/api/accounts/${data.id}`, {
+    method: "put",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
 
   if (response.ok) {
     const account = await response.json();
@@ -87,12 +82,11 @@ const accountReducer = (state = initialState, action) => {
         all: [],
       };
       for (let i = 0; i < action.accounts.length; i++) {
-        //  loop through the accounts
-        let account = action.accounts[i]; //  get the account
-        newState.byId[account.id] = account; //  add the account to the byId object
-        newState.all.push(account); //  add the account to the all array of accounts
+        let account = action.accounts[i];
+        newState.byId[account.id] = account;
+        newState.all.push(account);
       }
-      return newState; //  return the new state
+      return newState;
     }
 
     case ADD_ACCOUNT: {
@@ -102,6 +96,10 @@ const accountReducer = (state = initialState, action) => {
         byId: { ...state.byId, [newAccount.id]: newAccount },
         all: [...state.all, newAccount],
       };
+      // if (!newState.byId[newAccount.id]) {
+      //   newState.byId[newAccount.id] = newAccount;
+      //   newState.all.push(newAccount);
+      // };
       return newState;
     }
     case REMOVE_ACCOUNT: {
@@ -112,7 +110,8 @@ const accountReducer = (state = initialState, action) => {
         all: state.all.filter((account) => account.id !== removeId),
       };
       delete newState.byId[removeId];
-
+      // const removeIndex = newState.all.findIndex((account) => account.id === action.oldAccount.id);
+      // newState.all.splice(removeIndex, 1);
       return newState;
     }
     case UPDATE_ACCOUNT: {
@@ -125,7 +124,9 @@ const accountReducer = (state = initialState, action) => {
           account.id === editId ? editAccount : account
         ),
       };
-
+      // newState.byId[editAccount.id] = editAccount;
+      // const updateIndex = newState.all.findIndex((account) => account.id === editAccount.id);
+      // newState.all[updateIndex] = editAccount;
       return newState;
     }
     default:

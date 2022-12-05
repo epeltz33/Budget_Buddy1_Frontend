@@ -1,8 +1,8 @@
 import { createSelector } from "reselect";
 
-const getAccount = (state) => state.account.byId; //  get the account state from the store state
+const accounts = (state) => state.account.byId;
 
 export const selectAccountNameById = createSelector(
-  [getAccount, (state, accountId) => accountId],
-  (getAccount, accountId) => getAccount[accountId].account_name //  return the account name
+  [accounts, (state, accountId) => accountId],
+  (accounts, accountId) => accounts[accountId].account_name
 );

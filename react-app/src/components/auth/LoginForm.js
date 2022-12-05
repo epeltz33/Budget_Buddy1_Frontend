@@ -33,48 +33,57 @@ const LoginForm = () => {
   }, [navigate, user]);
 
   return (
-    <form onSubmit={onLogin}>
-      <div className="LoginInputs">
-        <div className="LoginEmail">
-          {/* <label htmlFor='email' id='LoginEmailLabel'>Email</label> */}
-          <input
-            name="email"
-            type="text"
-            value={email}
-            onChange={updateEmail}
-            id="LoginEmailInput"
-            placeholder="Email"
-          />
+    <div className="LoginForm scale-up-center">
+      {errors.length > 0 && (
+        <div className="LoginErrors">
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
         </div>
-        <div className="LoginPassword">
-          {/* <label htmlFor='password' id='LoginPasswordLabel'>Password</label> */}
-          <input
-            name="password"
-            type="password"
-            value={password}
-            onChange={updatePassword}
-            id="LoginPasswordInput"
-            placeholder="Password"
-          />
+      )}
+      <form onSubmit={onLogin}>
+        <div className="LoginInputs">
+          <div className="LoginEmail">
+            {/* <label htmlFor='email' id='LoginEmailLabel'>Email</label> */}
+            <input
+              name="email"
+              type="text"
+              value={email}
+              onChange={updateEmail}
+              id="LoginEmailInput"
+              placeholder="Email"
+            />
+          </div>
+          <div className="LoginPassword">
+            {/* <label htmlFor='password' id='LoginPasswordLabel'>Password</label> */}
+            <input
+              name="password"
+              type="password"
+              value={password}
+              onChange={updatePassword}
+              id="LoginPasswordInput"
+              placeholder="Password"
+            />
+          </div>
         </div>
-      </div>
-      <div id="LoginButtons">
-        <span className="LoginButton">
-          <button type="submit">Login</button>
-        </span>
-        <span className="DemoButton">
-          <button
-            type="submit"
-            onClick={() => {
-              setEmail("demo@aa.io");
-              setPassword("password");
-            }}
-          >
-            Demo
-          </button>
-        </span>
-      </div>
-    </form>
+        <div id="LoginButtons">
+          <span className="LoginButton">
+            <button type="submit">Login</button>
+          </span>
+          <span className="DemoButton">
+            <button
+              type="submit"
+              onClick={() => {
+                setEmail("demo@aa.io");
+                setPassword("password");
+              }}
+            >
+              Demo
+            </button>
+          </span>
+        </div>
+      </form>
+    </div>
   );
 };
 

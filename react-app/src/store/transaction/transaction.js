@@ -31,16 +31,17 @@ export const getTransactions = () => async (dispatch) => {
 };
 
 export const createTransaction = (newTransaction) => async (dispatch) => {
-  const response = await fetch(`http://127.0.0.1:5000/api/transactions/`, {
-    method: "post",
-    headers: { "Content-Type": "application/json" },
+  const response = await fetch("http://127.0.0.1:5000/api/transactions/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(newTransaction),
   });
-  const transaction = await response.json();
-
   if (response.ok) {
-    dispatch(add(transaction));
-    return transaction;
+    const transactions = await response.json();
+    dispatch(add(transactions.new_transaction));
+    return transactions;
   }
 };
 

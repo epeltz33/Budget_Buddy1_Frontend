@@ -1,0 +1,23 @@
+.CategoryCard {
+  display: flex;
+  flex-direction: column;
+  background-color: #F2F2F2;
+  border-radius: 0.3em;
+  /* margin: 1em; */
+  margin: 1.4vw;
+  padding: 1em;
+  /* box-shadow: 10px 5px 5px #001219; */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+}
+
+.CategoryBubbleChart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CategoryBubbleChart canvas {
+  max-height: 50vh;
+  max-width: 40vw;
+}

@@ -13,12 +13,13 @@ const AccountFilter = ({ filterQuery }) => {
   );
   return transactionsByAccount.length ? (
     <TransactionList
-      transactions={selectTransactionsByAccount}
+      transactions={transactionsByAccount}
       title={`${accountName} Transactions`}
     />
   ) : (
     <div className="TransactionList">
-      <h2>No transactions found for {accountName}</h2>
+      <h3>Account Transactions</h3>
+      <p> No Matching Transactions </p>
     </div>
   );
 };

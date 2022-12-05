@@ -13,10 +13,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 export default function BudgetCard() {
   const [isEdit, setIsEdit] = useState(false);
 
-  const budgets = useSelector((state) => {
-    console.log(state, "<==========<<<<");
-    return state.budget.all;
-  });
+  const budgets = useSelector((state) => state.budget.all);
   const transactions = useSelector((state) => state.transaction.all);
 
   const today = new Date();
