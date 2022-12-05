@@ -1,12 +1,13 @@
+import React from "react";
 import ReactDOM from "react-dom";
 import BudgetEdit from "../BudgetEdit/BudgetEdit";
 import Backdrop from "../Backdrop/Backdrop";
 import { motion } from "framer-motion";
-import React from "react";
 import "./BudgetList.css";
 
 export default function BudgetList({ budgets, isEdit, setIsEdit }) {
   if (!isEdit) {
+    // if isEdit is false (meaning the user is not editing a budget), return null
     return null;
   }
 
@@ -48,25 +49,11 @@ export default function BudgetList({ budgets, isEdit, setIsEdit }) {
         </h3>
         <ul>
           {budgets.map((budget) => (
-            <li key={budget.id}>
-              {budget.budget_name} | {budget.budget_amount}
-              <BudgetEdit
-                budgets={budgets}
-                budget={budget}
-                setIsEdit={setIsEdit}
-              />
-            </li>
+            <BudgetEdit key={budget.id} budget={budget} />
           ))}
         </ul>
-        <button
-          id="BudgetEditCloseButton"
-          className="cancel-button"
-          onClick={() => setIsEdit(false)}
-        >
-          Close
-        </button>
       </motion.div>
     </Backdrop>,
-    document.getElementById("root")
+    document.getElementById("modal")
   );
 }

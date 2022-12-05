@@ -29,15 +29,21 @@ export default function BudgetBarChart({ budgets, transactions, today }) {
       <h4>Category Budget</h4>
       {budgets
         .filter((budget) => budget.categoryId !== 1)
-        .map((budget) => getCard(budget, spend_monthly_byCat))}
+        .map((budget) =>
+          getCard(budget, spend_monthly_byCat[budget.categoryId])
+        )}
     </span>
   );
 }
 
 function getVariant(now, max) {
   const ratio = now / max;
-  if (ratio < 0.5) return "primary";
-  if (ratio < 0.75) return "warning";
+  if (ratio < 0.5) {
+    return "primary";
+  }
+  if (ratio < 0.75) {
+    return "warning";
+  }
   return "danger";
 }
 
@@ -57,7 +63,7 @@ function getCard(budget, spend_monthly_byCat) {
         <ProgressBar
           className="rounded-pill m-3"
           variant={getVariant(
-            spend_monthly_byCat[budget.categoryId], // this is the amount spent so far
+            spend_monthly_byCat[budget.categoryId],
             budget.budget_amount
           )}
           min={0}

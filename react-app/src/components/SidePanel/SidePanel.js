@@ -105,7 +105,7 @@ const SidePanel = () => {
         <AnimatePresence
           key="new-transaction-modal" // this is a key that is used to make sure that the modal is only rendered when the user clicks the add transaction button
           initial={false}
-          exitBeforeEnter={true}
+          mode="wait"
           onExitComplete={() => null}
         >
           {isAdd && (
@@ -155,7 +155,7 @@ const SidePanel = () => {
       <AnimatePresence
         key="filter-modal"
         initial={false}
-        exitBeforeEnter={true}
+        mode="wait"
         onExitComplete={() => null}
       >
         {isFilter && (

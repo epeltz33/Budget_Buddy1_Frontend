@@ -28,7 +28,7 @@ export default function BudgetCard() {
       <AnimatePresence
         key="edit-budget-modal"
         initial={false}
-        exitBeforeEnter={true}
+        foreEnter={true}
         onExitComplete={() => null} // set isEdit to false after animation is complete
       >
         {isEdit && (

@@ -20,19 +20,17 @@ const update = (account) => {
 };
 
 export const getAccounts = () => async (dispatch) => {
-  const response = await fetch("http://127.0.0.1:5000/api/accounts", {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const accounts = await response.json();
-  dispatch(load(accounts.all_accounts || {})); // if accounts is null, set to empty object
+  const response = await fetch("http://127.0.0.1:5000/api/accounts/");
 
-  return accounts;
+  if (response.ok) {
+    const accounts = await response.json();
+    dispatch(load(accounts.all_accounts));
+    return accounts;
+  }
 };
 
 export const createAccount = (newAccount) => async (dispatch) => {
-  const response = await fetch("http://127.0.0.1:5000/api/accounts", {
+  const response = await fetch("http://127.0.0.1:5000/api/accounts/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +43,7 @@ export const createAccount = (newAccount) => async (dispatch) => {
 };
 
 export const deleteAccount = (oldAccount) => async (dispatch) => {
-  const response = await fetch(`/api/accounts/${oldAccount.id}`, {
+  const response = await fetch(`/api/accounts/${oldAccount.id}/`, {
     method: "delete",
   });
 
@@ -56,7 +54,7 @@ export const deleteAccount = (oldAccount) => async (dispatch) => {
 };
 
 export const updateAccount = (data) => async (dispatch) => {
-  const response = await fetch(`/api/accounts/${data.id}`, {
+  const response = await fetch(`/api/accounts/${data.id}/`, {
     method: "put",
     headers: {
       "Content-Type": "application/json",
@@ -96,10 +94,7 @@ const accountReducer = (state = initialState, action) => {
         byId: { ...state.byId, [newAccount.id]: newAccount },
         all: [...state.all, newAccount],
       };
-      // if (!newState.byId[newAccount.id]) {
-      //   newState.byId[newAccount.id] = newAccount;
-      //   newState.all.push(newAccount);
-      // };
+
       return newState;
     }
     case REMOVE_ACCOUNT: {

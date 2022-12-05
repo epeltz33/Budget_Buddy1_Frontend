@@ -17,6 +17,8 @@ export const authenticate = () => async (dispatch) => {
   const response = await fetch("http://127.0.0.1:5000/api/auth/", {
     headers: {
       "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      Accept: "application/json",
     },
   });
   if (response.ok) {
