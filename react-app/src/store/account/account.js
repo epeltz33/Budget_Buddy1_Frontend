@@ -19,13 +19,15 @@ const update = (account) => {
   return { type: UPDATE_ACCOUNT, account };
 };
 
-export const getAccounts = () => async (dispatch) => {
-  const response = await fetch("http://127.0.0.1:5000/api/accounts/");
+export const getAccounts = (id) => async (dispatch) => {
+  const response = await fetch(`http://127.0.0.1:5000/api/accounts/id = (1)`);
 
   if (response.ok) {
-    const accounts = await response.json();
-    dispatch(load(accounts.all_accounts));
-    return accounts;
+    const account = await response.json();
+    dispatch(load(account.all_accounts));
+    return account;
+  } else {
+    throw new Error(response.statusText);
   }
 };
 

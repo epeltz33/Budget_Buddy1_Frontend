@@ -19,9 +19,9 @@ function App() {
     })();
   }, [dispatch]);
 
-  //if (!loaded) {
-  //return null;
-  //}
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <BrowserRouter>

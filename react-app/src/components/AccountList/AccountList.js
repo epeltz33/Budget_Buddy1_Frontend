@@ -62,10 +62,14 @@ export default function AccountList({ isMax }) {
         </button>
       ) : (
         <button className="NewAccountButton" onClick={toggleAdd}>
-          <i className="fa-solid fa-square-plus" /> Add
+          <i class="fa-solid fa-square-plus" /> Add
         </button>
       )}
-      <AnimatePresence initial={false} mode="wait" onExitComplete={() => null}>
+      <AnimatePresence
+        initial={false}
+        exitBeforeEnter={true}
+        onExitComplete={() => null}
+      >
         {isAdd && <AccountAdd setIsAdd={setIsAdd} accounts={accounts} />}
       </AnimatePresence>
       {isMax ? maxList : minList}
