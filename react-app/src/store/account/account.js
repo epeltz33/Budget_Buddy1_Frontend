@@ -20,11 +20,11 @@ const update = (account) => {
 };
 
 export const getAccounts = (id) => async (dispatch) => {
-  const response = await fetch(`http://127.0.0.1:5000/api/accounts/id = (1)`);
+  const response = await fetch(`http://127.0.0.1:5000/api/accounts/`);
 
   if (response.ok) {
     const account = await response.json();
-    dispatch(load(account.all_accounts));
+    dispatch(load(account));
     return account;
   } else {
     throw new Error(response.statusText);

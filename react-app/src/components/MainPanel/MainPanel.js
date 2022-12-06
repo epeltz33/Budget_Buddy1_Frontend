@@ -49,6 +49,7 @@ const MainPanel = () => {
           path="/"
           element={
             <>
+              <CategoryCard />
               <BudgetCard />
               <TransactionCard />
             </>
